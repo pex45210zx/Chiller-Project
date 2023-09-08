@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import './Home.css';
 
-function Header() {
+function Home() {
   const [click, setClick] = useState(false);
 
   const handleClick = () => {
@@ -48,4 +48,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default Home;
