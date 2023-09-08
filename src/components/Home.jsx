@@ -1,7 +1,7 @@
 // Header.jsx
 import React, { useState } from 'react';
 import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
-import './Header.css';
+import './Home.css';
 
 function Header() {
   const [click, setClick] = useState(false);
