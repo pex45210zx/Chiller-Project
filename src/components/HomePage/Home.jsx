@@ -29,7 +29,7 @@ function Home() {
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
               <li className="menu-link">
-                <Link>HOME</Link>
+                <Link to="/">HOME</Link>
               </li>
               <li className="menu-link">
                 <Link to="/register-chiller">REGISTER CHILLER</Link>
