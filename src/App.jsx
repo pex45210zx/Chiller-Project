@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './components/Home';
-import RegisterChiller from './components/RegisterChiller';
-import YourChiller from './components/YourChiller';
-import Delete from './components/Delete';
-import { initializeLIFF, fetchUserProfile } from './liffLogin';
+import Home from './components/HomePage/Home';
+import RegisterChiller from './components/RegisterPage/RegisterChiller';
+import YourChiller from './components/YourChillerPage/YourChiller';
+import Delete from './components/DeletePage/Delete';
+import { initializeLIFF, fetchUserProfile } from './components/LiffLogin';
 
 function App() {
   const [liffInitialized, setLiffInitialized] = useState(false);

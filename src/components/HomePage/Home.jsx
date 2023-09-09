@@ -3,7 +3,7 @@ import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
 import { Link } from 'react-router-dom';
 import './Home.css'
-import LiffLogin from './LiffLogin';
+import LiffLogin from '../LiffLogin';
 
 function Home({userProfile}) {
   const [click, setClick] = useState(false);
