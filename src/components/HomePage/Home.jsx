@@ -3,8 +3,11 @@ import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
 import { Link } from 'react-router-dom';
 import './Home.css'
+import handleLogout from '../../App.jsx';
 
-function Home() {
+
+
+function Home({ userProfile }) {
   const [click, setClick] = useState(false);
 
   const handleClick = () => {
@@ -19,18 +22,27 @@ function Home() {
             {click ? <FiX /> : <FiMenu />}
           </div>
           <div className="user-profile">
-            <a href="#">
-              <FiActivity />
-              UserPicture
-            </a>
+            <LiffLogin />
+            {userProfile && (
+              <>
+                <Link to="/profile">
+                  <img
+                    src={userProfile.pictureUrl}
+                    alt="User Profile"
+                    className="user-picture"
+                  />
+                  {userProfile.displayName}
+                </Link>
+              </>
+            )}
           </div>
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
               <li className="menu-link">
-              <Link>HOME</Link>
+                <Link>HOME</Link>
               </li>
               <li className="menu-link">
-              <Link to="/register-chiller">REGISTER CHILLER</Link>
+                <Link to="/register-chiller">REGISTER CHILLER</Link>
               </li>
               <li className="menu-link">
                 <Link to="/your-chiller">YOUR CHILLER</Link>
@@ -39,7 +51,7 @@ function Home() {
                 <Link to="/delete">DELETE CHILLER</Link>
               </li>
               <li className="menu-link">
-                <a href="#">LOG OUT</a>
+                <a onClick={handleLogout}>LOG OUT</a>
               </li>
             </ul>
           </div>
@@ -47,7 +59,7 @@ function Home() {
       </div>
       <div className="bodyHome">
         <h1>Homepage</h1>
-    </div>
+      </div>
     </div>
   );
 }
