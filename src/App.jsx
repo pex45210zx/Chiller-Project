@@ -1,44 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './components/HomePage/Home';
-import RegisterChiller from './components/RegisterPage/RegisterChiller';
-import YourChiller from './components/YourChillerPage/YourChiller';
-import Delete from './components/DeletePage/Delete';
-import { initializeLIFF, fetchUserProfile } from './components/LiffLogin';
-
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Routes instead of Switch
+import Home from './components/HomePage/Home.jsx';
+import RegisterChiller from './components/RegisterPage/RegisterChiller.jsx';
+import YourChiller from './components/YourChillerPage/YourChiller.jsx';
 function App() {
-  const [liffInitialized, setLiffInitialized] = useState(false);
-  const [userProfile, setUserProfile] = useState(null);
-
-  useEffect(() => {
-    async function initialize() {
-      const isInitialized = await initializeLIFF();
-      setLiffInitialized(isInitialized);
-    }
-
-    initialize();
-  }, []);
-
-  useEffect(() => {
-    if (liffInitialized) {
-      async function fetchProfile() {
-        const profile = await fetchUserProfile();
-        setUserProfile(profile);
-      }
-      
-      fetchProfile();
-    }
-  }, [liffInitialized]);
-
-  if (!liffInitialized) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <Router>
       <>
-        <Routes>
-          <Route path="/home" element={<Home userProfile={userProfile} />} />
+        <Routes> {/* Use Routes instead of Switch */}
+          <Route path="/home" element={<Home />} />
           <Route path="/register-chiller" element={<RegisterChiller />} />
           <Route path="/your-chiller" element={<YourChiller />} />
           <Route path="/delete" element={<Delete />} />

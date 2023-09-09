@@ -3,9 +3,8 @@ import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
 import { Link } from 'react-router-dom';
 import './Home.css'
-import LiffLogin from '../LiffLogin';
 
-function Home({userProfile}) {
+function Home() {
   const [click, setClick] = useState(false);
 
   const handleClick = () => {
@@ -20,19 +19,10 @@ function Home({userProfile}) {
             {click ? <FiX /> : <FiMenu />}
           </div>
           <div className="user-profile">
-            <LiffLogin />
-            {userProfile && (
-              <>
-                <Link to="/profile">
-                  <img
-                    src={userProfile.pictureUrl}
-                    alt="User Profile"
-                    className="user-picture"
-                  />
-                  {userProfile.displayName}
-                </Link>
-              </>
-            )}
+            <a href="#">
+              <FiActivity />
+              UserPicture
+            </a>
           </div>
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
