@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
-import './Header.css';
+import '../Header.css';
 import { Link } from 'react-router-dom';
 import './Home.css'
 
@@ -27,16 +27,16 @@ function Home() {
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
               <li className="menu-link">
-              <Link to="/">HOME</Link>
+              <Link>HOME</Link>
               </li>
               <li className="menu-link">
               <Link to="/register-chiller">REGISTER CHILLER</Link>
               </li>
               <li className="menu-link">
-                <a href="#">YOUR CHILLER</a>
+                <Link to="/your-chiller">YOUR CHILLER</Link>
               </li>
               <li className="menu-link">
-                <a href="#">DELETE CHILLER</a>
+                <Link to="/delete">DELETE CHILLER</Link>
               </li>
               <li className="menu-link">
                 <a href="#">LOG OUT</a>

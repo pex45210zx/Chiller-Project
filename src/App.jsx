@@ -1,15 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Import Routes instead of Switch
-import Home from './components/Home.jsx';
-import RegisterChiller from './components/RegisterChiller.jsx';
-
+import Home from './components/HomePage/Home.jsx';
+import RegisterChiller from './components/RegisterPage/RegisterChiller.jsx';
+import YourChiller from './components/YourChillerPage/YourChiller.jsx';
+import Delete from './components/DeletePage/Delete.jsx';
 function App() {
   return (
     <Router>
       <>
         <Routes> {/* Use Routes instead of Switch */}
-          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/register-chiller" element={<RegisterChiller />} />
+          <Route path="/your-chiller" element={<YourChiller />} />
+          <Route path="/delete" element={<Delete />} />
         </Routes>
       </>
     </Router>

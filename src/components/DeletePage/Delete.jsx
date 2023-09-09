@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
 import { Link } from 'react-router-dom';
-import './RegisterChiller.css';
+import './Delete.css'
 
-function RegisterChiller() {
+function Delete() {
   const [click, setClick] = useState(false);
 
   const handleClick = () => {
@@ -30,26 +30,26 @@ function RegisterChiller() {
               <Link to="/home">HOME</Link>
               </li>
               <li className="menu-link">
-              <Link >REGISTER CHILLER</Link>
+              <Link to="/register-chiller">REGISTER CHILLER</Link>
               </li>
               <li className="menu-link">
                 <Link to="/your-chiller">YOUR CHILLER</Link>
               </li>
               <li className="menu-link">
-                <Link to="/delete">DELETE CHILLER</Link>
+                <Link>DELETE CHILLER</Link>
               </li>
               <li className="menu-link">
-                <a href="#">LOG OUT</a>
+                <a>LOG OUT</a>
               </li>
             </ul>
           </div>
         </div>
       </div>
-      <div className="bodyregisterCL">
-        <h1>registerpage</h1>
+      <div className="bodydelete">
+        <h1>Deletepage</h1>
     </div>
     </div>
   );
 }
 
-export default RegisterChiller;
+export default Delete;
