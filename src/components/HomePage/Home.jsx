@@ -1,7 +1,8 @@
-// Header.jsx
 import React, { useState } from 'react';
 import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
-import './Home.css';
+import './Header.css';
+import { Link } from 'react-router-dom';
+import './Home.css'
 
 function Home() {
   const [click, setClick] = useState(false);
@@ -26,10 +27,10 @@ function Home() {
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
               <li className="menu-link">
-                <a href="#">HOME</a>
+              <Link to="/">HOME</Link>
               </li>
               <li className="menu-link">
-                <a href="#">REGISTER CHILLER</a>
+              <Link to="/register-chiller">REGISTER CHILLER</Link>
               </li>
               <li className="menu-link">
                 <a href="#">YOUR CHILLER</a>
@@ -44,6 +45,9 @@ function Home() {
           </div>
         </div>
       </div>
+      <div className="bodyHome">
+        <h1>Homepage</h1>
+    </div>
     </div>
   );
 }
