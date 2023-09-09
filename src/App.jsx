@@ -8,12 +8,14 @@ import Delete from './components/DeletePage/Delete.jsx';
 function App() {
   return (
     <Router>
+      <>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register-chiller" element={<RegisterChiller />} />
         <Route path="/your-chiller" element={<YourChiller />} />
         <Route path="/delete" element={<Delete />} />
       </Routes>
+      </>
     </Router>
   );
 }
