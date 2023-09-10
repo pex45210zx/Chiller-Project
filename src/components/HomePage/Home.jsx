@@ -6,19 +6,19 @@ import './Home.css'
 import liff from '@line/liff'; // Import the Line Liff SDK
 import '../LiffLogin';
 
-function Home({user}) {
+function Home() {
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
   const [profilePicture, setProfilePicture] = useState(''); // Store profile picture
 
-  const handleLogout = async () => {
-    try {
-      await liff.logout();
-      navigate('/login');
-    } catch (error) {
-      console.error('Line Liff logout error:', error);
-    }
-  };
+  // const handleLogout = async () => {
+  //   try {
+  //     await liff.logout();
+  //     navigate('/login');
+  //   } catch (error) {
+  //     console.error('Line Liff logout error:', error);
+  //   }
+  // };
 
   const handleClick = () => {
     setClick(!click);

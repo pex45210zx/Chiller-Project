@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 const LiffLogin = () => {
   const [isLoading, setIsLoading] = useState(true); // State to track loading status
   const [profilePicture, setProfilePicture] = useState('');
-  const [userId, setUserId] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async () => {
@@ -36,12 +35,6 @@ const LiffLogin = () => {
 
   return (
     <div>
-      {/* Display loading or login status */}
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <p>Login Successful!</p>
-      )}
     </div>
   );
 };

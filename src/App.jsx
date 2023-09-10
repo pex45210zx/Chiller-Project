@@ -10,7 +10,6 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/login" element={<LiffLogin />} />
         <Route
           path="/"
           element={<Home user={{ profilePicture: '' }} />} // Pass an empty profilePicture initially
