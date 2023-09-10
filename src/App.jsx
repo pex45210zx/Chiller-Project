@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/Chiller-Project" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/register-chiller" element={<RegisterChiller />} />
         <Route path="/your-chiller" element={<YourChiller />} />
         <Route path="/delete" element={<Delete />} />
