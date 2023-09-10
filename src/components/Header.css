@@ -44,6 +44,7 @@ body {
     text-decoration: none;
     color: #fff;
     padding-left: 2rem;
+    cursor: pointer;
 }
 
 .toggle-menu {

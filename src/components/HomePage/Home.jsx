@@ -4,7 +4,7 @@ import '../Header.css';
 import { Link } from 'react-router-dom';
 import './Home.css'
 import LiffLogin from '../LiffLogin';
-
+import liff from '@line/liff'; // Import the LIFF SDK
 
 function Home() {
   const [click, setClick] = useState(false);
@@ -18,8 +18,17 @@ function Home() {
     if (liff.isLoggedIn()) {
       const user = await liff.getProfile();
       setUserProfile(user);
+      setIsLoggedIn(true);
     }
   };
+
+  const handleLogout = async () => {
+    if (liff.isLoggedIn()) {
+      await liff.logout(); // Log out the Line user
+      setIsLoggedIn(false); // Update login status
+    }
+  };
+
 
   return (
     <div className="header">
@@ -53,7 +62,7 @@ function Home() {
                 <Link to="/delete">DELETE CHILLER</Link>
               </li>
               <li className="menu-link">
-                <a>LOG OUT</a>
+                <Link to="/" onClick={handleLogout}>LOG OUT</Link>
               </li>
             </ul>
           </div>
