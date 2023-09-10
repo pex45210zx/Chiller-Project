@@ -10,7 +10,6 @@ function App() {
   return (
     <>
       <Routes>
-        <LiffLogin/>
         <Route path="/" element={<Home />} />
         <Route path="/register-chiller" element={<RegisterChiller />} />
         <Route path="/your-chiller" element={<YourChiller />} />
