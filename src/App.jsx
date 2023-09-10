@@ -9,10 +9,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route
-          path="/"
-          element={<Home user={{ profilePicture: '' }} />} // Pass an empty profilePicture initially
-        />
+        <Route path="/" element={<Home />} />
         <Route path="/register-chiller" element={<RegisterChiller />} />
         <Route path="/your-chiller" element={<YourChiller />} />
         <Route path="/delete" element={<Delete />} />
