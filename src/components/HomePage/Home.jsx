@@ -1,33 +1,12 @@
 import React, { useState } from 'react';
-import { FiMenu, FiX } from 'react-icons/fi';
+import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
 import { Link } from 'react-router-dom';
 import './Home.css'
-import LiffLogin from '../LiffLogin';
-import liff from '@line/liff'; // Import the LIFF SDK
+
 
 function Home() {
   const [click, setClick] = useState(false);
-  const [userProfile, setUserProfile] = useState(null);
-
-  const handleClick = () => {
-    setClick(!click);
-  };
-
-  const handleLogin = async () => {
-    if (liff.isLoggedIn()) {
-      const user = await liff.getProfile();
-      setUserProfile(user);
-      setIsLoggedIn(true);
-    }
-  };
-
-  const handleLogout = async () => {
-    if (liff.isLoggedIn()) {
-      await liff.logout(); // Log out the Line user
-      setIsLoggedIn(false); // Update login status
-    }
-  };
 
 
   return (
@@ -38,14 +17,7 @@ function Home() {
             {click ? <FiX /> : <FiMenu />}
           </div>
           <div className="user-profile">
-            {userProfile ? (
-              <>
-                <img src={userProfile.pictureUrl} alt="User Profile" />
-                <span>{userProfile.displayName}</span>
-              </>
-            ) : (
-              <LiffLogin onLogin={handleLogin} />
-            )}
+            <a href="">UserProfile<FiActivity/></a>
           </div>
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
@@ -62,7 +34,7 @@ function Home() {
                 <Link to="/delete">DELETE CHILLER</Link>
               </li>
               <li className="menu-link">
-                <Link to="/" onClick={handleLogout}>LOG OUT</Link>
+                <Link to="/">LOG OUT</Link>
               </li>
             </ul>
           </div>

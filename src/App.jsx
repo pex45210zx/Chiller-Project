@@ -4,7 +4,6 @@ import Home from './components/HomePage/Home.jsx';
 import RegisterChiller from './components/RegisterPage/RegisterChiller.jsx';
 import YourChiller from './components/YourChillerPage/YourChiller.jsx';
 import Delete from './components/DeletePage/Delete.jsx';
-import LiffLogin from './components/LiffLogin.jsx';
 
 function App() {
   return (
