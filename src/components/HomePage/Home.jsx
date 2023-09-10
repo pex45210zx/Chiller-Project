@@ -21,7 +21,7 @@ function Home() {
             {click ? <FiX /> : <FiMenu />}
           </div>
           <div className="user-profile">
-        UserProfile <img src={profilePicture} alt="Profile" />
+        UserProfile
         <FiActivity />
       </div>
           <div className={`menu-container ${click ? 'active' : ''}`}>
