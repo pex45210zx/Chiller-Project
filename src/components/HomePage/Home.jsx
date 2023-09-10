@@ -51,7 +51,7 @@ function Home() {
                 <Link to="/delete">DELETE CHILLER</Link>
               </li>
               <li className="menu-link">
-               <a href="#" onClick={handleLogout}>LOG OUT</a>
+               <a href="#">LOG OUT</a>
               </li>
             </ul>
           </div>
