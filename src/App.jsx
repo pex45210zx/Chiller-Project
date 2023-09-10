@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/HomePage/Home.jsx';
 import RegisterChiller from './components/RegisterPage/RegisterChiller.jsx';
 import YourChiller from './components/YourChillerPage/YourChiller.jsx';
