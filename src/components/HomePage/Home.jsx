@@ -1,16 +1,24 @@
 import React, { useState } from 'react';
-import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
 import { Link } from 'react-router-dom';
 import './Home.css'
-
+import LiffLogin from '../LiffLogin';
 
 
 function Home() {
   const [click, setClick] = useState(false);
+  const [userProfile, setUserProfile] = useState(null);
 
   const handleClick = () => {
     setClick(!click);
+  };
+
+  const handleLogin = async () => {
+    if (liff.isLoggedIn()) {
+      const user = await liff.getProfile();
+      setUserProfile(user);
+    }
   };
 
   return (
@@ -21,10 +29,14 @@ function Home() {
             {click ? <FiX /> : <FiMenu />}
           </div>
           <div className="user-profile">
-            <a href="#">
-              <FiActivity />
-              UserPicture
-            </a>
+            {userProfile ? (
+              <>
+                <img src={userProfile.pictureUrl} alt="User Profile" />
+                <span>{userProfile.displayName}</span>
+              </>
+            ) : (
+              <LiffLogin onLogin={handleLogin} />
+            )}
           </div>
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
