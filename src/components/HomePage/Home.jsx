@@ -1,12 +1,28 @@
 import React, { useState } from 'react';
 import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 import './Home.css'
+import liff from '@line/liff'; // Import the Line Liff SDK
+import '../LiffLogin';
 
-
-function Home() {
+function Home({user}) {
   const [click, setClick] = useState(false);
+  const navigate = useNavigate();
+  const [profilePicture, setProfilePicture] = useState(''); // Store profile picture
+
+  const handleLogout = async () => {
+    try {
+      await liff.logout();
+      navigate('/login');
+    } catch (error) {
+      console.error('Line Liff logout error:', error);
+    }
+  };
+
+  const handleClick = () => {
+    setClick(!click);
+  };
 
 
   return (
@@ -17,8 +33,9 @@ function Home() {
             {click ? <FiX /> : <FiMenu />}
           </div>
           <div className="user-profile">
-            <a href="">UserProfile<FiActivity/></a>
-          </div>
+        UserProfile <img src={profilePicture} alt="Profile" />
+        <FiActivity />
+      </div>
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
               <li className="menu-link">
@@ -34,7 +51,7 @@ function Home() {
                 <Link to="/delete">DELETE CHILLER</Link>
               </li>
               <li className="menu-link">
-                <Link to="/">LOG OUT</Link>
+               <a href="#" onClick={handleLogout}>LOG OUT</a>
               </li>
             </ul>
           </div>
