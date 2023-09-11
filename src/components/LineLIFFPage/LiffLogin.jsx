@@ -1,6 +1,7 @@
 import liff from '@line/liff';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { checkAndSaveLoginStatus, getUserId, isLoggedIn } from './auth';
 
 function LiffLogin() {
   const [profilePicture, setProfilePicture] = useState('');
@@ -13,13 +14,15 @@ function LiffLogin() {
       try {
         await liff.init({ liffId: '2000665579-jvJl5OyP' });
 
-        if (!liff.isLoggedIn()) {
+        // Check if the user is logged in
+        if (!isLoggedIn()) {
           liff.login();
         } else {
-          const profile = await liff.getProfile();
-          setProfilePicture(profile.pictureUrl);
-          setUserId(profile.userId);
-          setDisplayName(profile.displayName);
+          // Get user ID from localStorage
+          const userId = getUserId();
+          setUserId(userId);
+          setDisplayName(userId);
+          setProfilePicture(userId);
 
           // Navigate to the Home page after successful login
           navigate('/home');
@@ -30,6 +33,7 @@ function LiffLogin() {
     };
 
     loginWithLiff();
+    checkAndSaveLoginStatus(); // Call the utility function to check and save login status
   }, [navigate]);
 
   return (
