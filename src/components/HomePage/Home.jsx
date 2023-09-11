@@ -12,8 +12,6 @@ function Home() {
     setClick(!click);
   };
 
-  const isLoggedIn = profilePicture&&displayName;
-
   return (
     <div className="header">
       <div className="container">
