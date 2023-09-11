@@ -22,19 +22,10 @@ function Home() {
             {click ? <FiX /> : <FiMenu />}
           </div>
           <div className="user-profile">
-            {isLoggedIn ? (
-              <>
-                <img src={profilePicture} alt="Profile" />
-                <div>
-                  <p>{displayName}</p>
-                </div>
-              </>
-            ) : (
-              <>
+    
                 UserProfile
                 <FiActivity />
-              </>
-            )}
+           
           </div>
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
