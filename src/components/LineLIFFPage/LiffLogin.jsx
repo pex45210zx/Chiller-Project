@@ -1,52 +1,45 @@
 import liff from '@line/liff';
-import React, { useState } from 'react'
-import { Route, Routes } from 'react-router-dom';
-import Home from '../HomePage/Home';
-import RegisterChiller from '../RegisterPage/RegisterChiller';
-import YourChiller from '../YourChillerPage/YourChiller';
-import Delete from '../DeletePage/Delete';
-
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function LiffLogin() {
-    const [profilePicture, setProfilePicture] = useState('');
-    const [userId, setUserId] = useState('');
-    const [displayName, setDisplayName] = useState('');
+  const [profilePicture, setProfilePicture] = useState('');
+  const [userId, setUserId] = useState('');
+  const [displayName, setDisplayName] = useState('');
+  const navigate = useNavigate();
 
-    const handleLogin = async () => {
-        try {
-            await liff.init({ liffId: '2000665579-jvJl5OyP' });
+  useEffect(() => {
+    const loginWithLiff = async () => {
+      try {
+        await liff.init({ liffId: '2000665579-jvJl5OyP' });
 
-            if (!liff.isLoggedIn()) {
-                liff.login();
-            } else {
-                const profile = await liff.getProfile();
-                setProfilePicture(profile.pictureUrl);
-                setUserId(profile.userId);
-                setDisplayName(profile.displayName);
-            }
-        } catch (error) {
-            console.log(error);
-        };
-    }
+        if (!liff.isLoggedIn()) {
+          liff.login();
+        } else {
+          const profile = await liff.getProfile();
+          setProfilePicture(profile.pictureUrl);
+          setUserId(profile.userId);
+          setDisplayName(profile.displayName);
 
-    return (
-        <>
-            <div>
-                {!profilePicture ? (
-                    <button onClick={handleLogin}>Login with LIFF</button>
-                ) : (
-                    <div>
-                        <Routes>
-                            <Route path="/home" element={<Home />} />
-                            <Route path="/register-chiller" element={<RegisterChiller />} />
-                            <Route path="/your-chiller" element={<YourChiller />} />
-                            <Route path="/delete" element={<Delete />} />
-                        </Routes>
-                    </div>
-                )}
-            </div>
-        </>
-    )
+          // Navigate to the Home page after successful login
+          navigate('/home');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    loginWithLiff();
+  }, [navigate]);
+
+  return (
+    <>
+      <div>
+        {/* You can display a loading message here */}
+        <p>Loading...</p>
+      </div>
+    </>
+  );
 }
 
 export default LiffLogin;
