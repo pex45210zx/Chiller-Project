@@ -3,6 +3,7 @@ import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
 import { Link } from 'react-router-dom';
 import './Home.css'
+import liff from '@line/liff';
 
 
 function Home() {
@@ -10,6 +11,10 @@ function Home() {
 
   const handleClick = () => {
     setClick(!click);
+  };
+
+  const handleLogout = () =>{
+    liff.logout();
   };
 
   return (
@@ -40,7 +45,7 @@ function Home() {
                 <Link to="/delete">DELETE CHILLER</Link>
               </li>
               <li className="menu-link">
-                <a href="#">LOG OUT</a>
+                <a onClick={handleLogout}>LOG OUT</a>
               </li>
             </ul>
           </div>
