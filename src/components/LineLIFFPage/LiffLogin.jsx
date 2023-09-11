@@ -22,7 +22,7 @@ function LiffLogin() {
           setDisplayName(profile.displayName);
 
           // Navigate to the Home page after successful login
-          navigate('/Chiller-Project/home');
+          navigate('/home');
         }
       } catch (error) {
         console.log(error);

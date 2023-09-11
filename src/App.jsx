@@ -11,7 +11,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<LiffLogin />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/Chiller-Project/home" element={<Home />} />
         <Route path="/register-chiller" element={<RegisterChiller />} />
         <Route path="/your-chiller" element={<YourChiller />} />
         <Route path="/delete" element={<Delete />} />
