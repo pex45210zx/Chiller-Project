@@ -15,15 +15,9 @@ function Home() {
   };
 
   const handleLogout = () => {
-    try {
       liff.logout();
-      localStorage.removeItem('isLoggedIn'); // Clear the login status from local storage
       navigate('/');
-      console.log('clicked logout'); // Navigate to the login page or any other desired page
-    } catch (error) {
-      console.log(error);
-    }
-
+      console.log('clicked logout');
   };
 
   return (

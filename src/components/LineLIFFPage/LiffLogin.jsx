@@ -9,7 +9,7 @@ function LiffLogin() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const checkLoginStatus = async () => {
+    const loginWithLiff = async () => {
       try {
         await liff.init({ liffId: '2000665579-jvJl5OyP' });
 
@@ -21,9 +21,6 @@ function LiffLogin() {
           setUserId(profile.userId);
           setDisplayName(profile.displayName);
 
-          // Store a flag in local storage to indicate that the user is logged in
-          localStorage.setItem('isLoggedIn', 'true');
-
           // Navigate to the Home page after successful login
           navigate('/home');
         }
@@ -32,13 +29,7 @@ function LiffLogin() {
       }
     };
 
-    // Check if the user is already logged in based on the local storage flag
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn === 'true') {
-      navigate('/home');
-    } else {
-      checkLoginStatus();
-    }
+    loginWithLiff();
   }, [navigate]);
 
   return (
