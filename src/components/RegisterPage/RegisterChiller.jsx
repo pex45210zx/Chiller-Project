@@ -47,7 +47,7 @@ function RegisterChiller() {
                 <Link to="/delete">DELETE CHILLER</Link>
               </li>
               <li className="menu-link">
-              <a onClick={handleLogout}>LOG OUT</a>
+                <a onClick={handleLogout}>LOG OUT</a>
               </li>
             </ul>
           </div>

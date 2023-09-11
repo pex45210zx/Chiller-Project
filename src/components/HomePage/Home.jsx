@@ -10,7 +10,7 @@ import { getProfileData } from '../localStorageUtils';
 function Home() {
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
-  const { profilePicture , displayName } = getProfileData();
+  const { profilePicture, displayName } = getProfileData();
 
   const handleClick = () => {
     setClick(!click);
