@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
-import { Link , useNavigate  } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Home.css'
 import liff from '@line/liff';
 
@@ -9,15 +9,28 @@ import liff from '@line/liff';
 function Home() {
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
+  const [profilePicture, setProfilePicture] = useState('');
+  const [displayName, setDisplayName] = useState('');
+
+  useEffect(() => {
+    // Retrieve profile data from local storage
+    const storedProfilePicture = localStorage.getItem('profilePicture');
+    const storedDisplayName = localStorage.getItem('displayName');
+
+    if (storedProfilePicture && storedDisplayName) {
+      setProfilePicture(storedProfilePicture);
+      setDisplayName(storedDisplayName);
+    }
+  }, []);
 
   const handleClick = () => {
     setClick(!click);
   };
 
   const handleLogout = () => {
-      liff.logout();
-      navigate('/');
-      console.log('clicked logout');
+    liff.logout();
+    navigate('/');
+    console.log('clicked logout');
   };
 
   return (
@@ -28,10 +41,9 @@ function Home() {
             {click ? <FiX /> : <FiMenu />}
           </div>
           <div className="user-profile">
-    
-                UserProfile
-                <FiActivity />
-           
+            <img src={profilePicture} alt="User Profile" />
+            <span>{displayName}</span>
+            <FiActivity />
           </div>
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">

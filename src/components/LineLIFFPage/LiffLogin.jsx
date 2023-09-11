@@ -3,43 +3,47 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function LiffLogin() {
-  const [profilePicture, setProfilePicture] = useState('');
-  const [userId, setUserId] = useState('');
-  const [displayName, setDisplayName] = useState('');
-  const navigate = useNavigate();
+    const [profilePicture, setProfilePicture] = useState('');
+    const [userId, setUserId] = useState('');
+    const [displayName, setDisplayName] = useState('');
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    const loginWithLiff = async () => {
-      try {
-        await liff.init({ liffId: '2000665579-jvJl5OyP' });
+    useEffect(() => {
+        const loginWithLiff = async () => {
+            try {
+                await liff.init({ liffId: '2000665579-jvJl5OyP' });
 
-        if (!liff.isLoggedIn()) {
-          liff.login();
-        } else {
-          const profile = await liff.getProfile();
-          setProfilePicture(profile.pictureUrl);
-          setUserId(profile.userId);
-          setDisplayName(profile.displayName);
+                if (!liff.isLoggedIn()) {
+                    liff.login();
+                } else {
+                    const profile = await liff.getProfile();
+                    setProfilePicture(profile.pictureUrl);
+                    setUserId(profile.userId);
+                    setDisplayName(profile.displayName);
 
-          // Navigate to the Home page after successful login
-          navigate('/home');
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
+                    // Store profile data in local storage
+                    localStorage.setItem('profilePicture', profile.pictureUrl);
+                    localStorage.setItem('displayName', profile.displayName);
 
-    loginWithLiff();
-  }, [navigate]);
+                    // Navigate to the Home page after successful login
+                    navigate('/home');
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
 
-  return (
-    <>
-      <div>
-        {/* You can display a loading message here */}
-        <p>Loading...</p>
-      </div>
-    </>
-  );
+        loginWithLiff();
+    }, [navigate]);
+
+    return (
+        <>
+            <div>
+                {/* You can display a loading message here */}
+                <p>Loading...</p>
+            </div>
+        </>
+    );
 }
 
 export default LiffLogin;
