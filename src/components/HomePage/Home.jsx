@@ -1,27 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css'
 import liff from '@line/liff';
+import { getProfileData } from '../localStorageUtils';
 
 
 function Home() {
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
-  const [profilePicture, setProfilePicture] = useState('');
-  const [displayName, setDisplayName] = useState('');
-
-  useEffect(() => {
-    // Retrieve profile data from local storage
-    const storedProfilePicture = localStorage.getItem('profilePicture');
-    const storedDisplayName = localStorage.getItem('displayName');
-
-    if (storedProfilePicture && storedDisplayName) {
-      setProfilePicture(storedProfilePicture);
-      setDisplayName(storedDisplayName);
-    }
-  }, []);
+  const { profilePicture , displayName } = getProfileData();
 
   const handleClick = () => {
     setClick(!click);

@@ -1,6 +1,7 @@
 import liff from '@line/liff';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { saveProfileData } from '../localStorageUtils';
 
 function LiffLogin() {
     const [profilePicture, setProfilePicture] = useState('');
@@ -22,8 +23,7 @@ function LiffLogin() {
                     setDisplayName(profile.displayName);
 
                     // Store profile data in local storage
-                    localStorage.setItem('profilePicture', profile.pictureUrl);
-                    localStorage.setItem('displayName', profile.displayName);
+                    saveProfileData(profile.pictureUrl,profile.displayName);
 
                     // Navigate to the Home page after successful login
                     navigate('/home');
