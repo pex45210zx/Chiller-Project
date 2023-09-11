@@ -14,10 +14,16 @@ function Home() {
     setClick(!click);
   };
 
-  const handleLogout = () =>{
-    liff.logout();
-    navigate('/');
-    console.log('clicked logout');
+  const handleLogout = () => {
+    try {
+      liff.logout();
+      localStorage.removeItem('isLoggedIn'); // Clear the login status from local storage
+      navigate('/');
+      console.log('clicked logout'); // Navigate to the login page or any other desired page
+    } catch (error) {
+      console.log(error);
+    }
+
   };
 
   return (
