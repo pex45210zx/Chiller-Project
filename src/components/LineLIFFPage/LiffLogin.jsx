@@ -1,6 +1,6 @@
 import liff from '@line/liff';
 import React, { useState } from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Home from '../HomePage/Home';
 import RegisterChiller from '../RegisterPage/RegisterChiller';
 import YourChiller from '../YourChillerPage/YourChiller';
@@ -11,8 +11,6 @@ function LiffLogin() {
     const [profilePicture, setProfilePicture] = useState('');
     const [userId, setUserId] = useState('');
     const [displayName, setDisplayName] = useState('');
-
-    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
@@ -25,8 +23,6 @@ function LiffLogin() {
                 setProfilePicture(profile.pictureUrl);
                 setUserId(profile.userId);
                 setDisplayName(profile.displayName);
-
-                navigate('/home');
             }
         } catch (error) {
             console.log(error);

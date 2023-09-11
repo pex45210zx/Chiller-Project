@@ -12,7 +12,7 @@ function Home() {
     setClick(!click);
   };
 
-  const isLoggedIn = profilePicture && userId && displayName;
+  const isLoggedIn = profilePicture&&displayName;
 
   return (
     <div className="header">
@@ -27,7 +27,6 @@ function Home() {
                 <img src={profilePicture} alt="Profile" />
                 <div>
                   <p>{displayName}</p>
-                  <p>{userId}</p>
                 </div>
               </>
             ) : (
