@@ -3,12 +3,23 @@ import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
 import { Link } from 'react-router-dom';
 import './YourChiller.css'
+import { getProfileData } from '../localStorageUtils';
+import liff from '@line/liff';
 
 function YourChiller() {
   const [click, setClick] = useState(false);
+  const navigate = useNavigate();
+  const { profilePicture , displayName } = getProfileData();
+
 
   const handleClick = () => {
     setClick(!click);
+  };
+
+  const handleLogout = () => {
+    liff.logout();
+    navigate('/');
+    console.log('clicked logout');
   };
 
   return (
@@ -19,10 +30,8 @@ function YourChiller() {
             {click ? <FiX /> : <FiMenu />}
           </div>
           <div className="user-profile">
-            <a href="#">
-              <FiActivity />
-              UserPicture
-            </a>
+            <img src={profilePicture} alt="User Profile" />
+            <span>{displayName}</span>
           </div>
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
@@ -39,7 +48,7 @@ function YourChiller() {
                 <Link to="/delete">DELETE CHILLER</Link>
               </li>
               <li className="menu-link">
-                <a href="#">LOG OUT</a>
+              <a onClick={handleLogout}>LOG OUT</a>
               </li>
             </ul>
           </div>

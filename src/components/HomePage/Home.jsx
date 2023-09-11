@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
+import { FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css'
@@ -32,7 +32,6 @@ function Home() {
           <div className="user-profile">
             <img src={profilePicture} alt="User Profile" />
             <span>{displayName}</span>
-            <FiActivity />
           </div>
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
