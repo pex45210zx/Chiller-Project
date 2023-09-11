@@ -12,6 +12,7 @@ function Home() {
     setClick(!click);
   };
 
+  const isLoggedIn = profilePicture && userId && displayName;
 
   return (
     <div className="header">
@@ -21,9 +22,21 @@ function Home() {
             {click ? <FiX /> : <FiMenu />}
           </div>
           <div className="user-profile">
-        UserProfile
-        <FiActivity />
-      </div>
+            {isLoggedIn ? (
+              <>
+                <img src={profilePicture} alt="Profile" />
+                <div>
+                  <p>{displayName}</p>
+                  <p>{userId}</p>
+                </div>
+              </>
+            ) : (
+              <>
+                UserProfile
+                <FiActivity />
+              </>
+            )}
+          </div>
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
               <li className="menu-link">
@@ -39,7 +52,7 @@ function Home() {
                 <Link to="/delete">DELETE CHILLER</Link>
               </li>
               <li className="menu-link">
-               <a href="#">LOG OUT</a>
+                <a href="#">LOG OUT</a>
               </li>
             </ul>
           </div>
