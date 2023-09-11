@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { FiActivity, FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate  } from 'react-router-dom';
 import './Home.css'
 import liff from '@line/liff';
 
 
 function Home() {
   const [click, setClick] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setClick(!click);
@@ -15,6 +16,8 @@ function Home() {
 
   const handleLogout = () =>{
     liff.logout();
+    navigate('/');
+    console.log('clicked logout');
   };
 
   return (
