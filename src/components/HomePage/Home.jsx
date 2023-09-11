@@ -28,7 +28,7 @@ function Home() {
           <div className={`menu-container ${click ? 'active' : ''}`}>
             <ul className="menu">
               <li className="menu-link">
-                <Link to="/">HOME</Link>
+                <Link to="/home">HOME</Link>
               </li>
               <li className="menu-link">
                 <Link to="/register-chiller">REGISTER CHILLER</Link>
