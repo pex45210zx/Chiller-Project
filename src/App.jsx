@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import LiffLogin from './components/LineLIFFPage/LiffLogin.jsx';
 import Home from './components/HomePage/Home.jsx';
 import RegisterChiller from './components/RegisterPage/RegisterChiller.jsx';
