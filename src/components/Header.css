@@ -85,6 +85,9 @@ body {
         padding: 0 2rem;
     }
 
+    .header-con{
+        padding: 0%;
+    }
     .menu-container {
         width: 60%;
         height: 100%;
