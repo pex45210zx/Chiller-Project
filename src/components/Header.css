@@ -36,6 +36,12 @@ body {
     margin-left: 15px;
 }
 
+.user-profile span {
+   display: flex;
+   text-decoration: none;
+   color: #fff;
+}
+
 .menu {
     list-style-type: none;
     padding: 0; /* Remove default padding */
