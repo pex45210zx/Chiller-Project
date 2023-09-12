@@ -23,12 +23,16 @@ body {
     align-items: center;
 }
 
-.user-profile a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1rem;
-    padding-left: 15px;
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile img {
+    width: 40px; /* Adjust the size as needed */
+    height: 40px; /* Adjust the size as needed */
+    border-radius: 50%; /* Create a circular shape */
+    margin-right: 10px; /* Add some spacing between the image and text */
 }
 
 .menu {
