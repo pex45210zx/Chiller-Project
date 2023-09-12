@@ -80,6 +80,11 @@ body {
         color: #fff;
         font-size: 2rem;
         margin-bottom: 0px;
+        margin-top: 10px;
+    }
+
+    .container{
+        padding-left: none;
     }
 
     .header {
