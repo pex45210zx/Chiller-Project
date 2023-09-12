@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Home.css'
 import liff from '@line/liff';
 import { getProfileData } from '../localStorageUtils';
+import Header from '../header';
 
 
 function Home() {
@@ -24,36 +25,13 @@ function Home() {
 
   return (
     <div className="header">
-      <div className="container">
-        <div className="header-con">
-          <div className="toggle-menu" onClick={handleClick}>
-            {click ? <FiX /> : <FiMenu />}
-          </div>
-          <div className="user-profile">
-            <img src={profilePicture} alt="User Profile" />
-            <span>{displayName}</span>
-          </div>
-          <div className={`menu-container ${click ? 'active' : ''}`}>
-            <ul className="menu">
-              <li className="menu-link">
-                <Link to="/home">HOME</Link>
-              </li>
-              <li className="menu-link">
-                <Link to="/register-chiller">REGISTER CHILLER</Link>
-              </li>
-              <li className="menu-link">
-                <Link to="/your-chiller">YOUR CHILLER</Link>
-              </li>
-              <li className="menu-link">
-                <Link to="/delete">DELETE CHILLER</Link>
-              </li>
-              <li className="menu-link">
-                <a onClick={handleLogout}>LOG OUT</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
+      <Header
+        click={click}
+        handleClick={handleClick}
+        profilePicture={profilePicture}
+        displayName={displayName}
+        handleLogout={handleLogout}
+      />
       <div className="bodyHome">
         <h1>Homepage</h1>
       </div>
