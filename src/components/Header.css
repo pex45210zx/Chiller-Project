@@ -79,15 +79,12 @@ body {
         display: block;
         color: #fff;
         font-size: 2rem;
-        margin-bottom: 0;
+        margin-bottom: 0px;
     }
 
     .header {
         padding: 0 2rem;
-    }
-
-    .header-con{
-        padding-left: -15px;
+        padding-left: 0px;
     }
     .menu-container {
         width: 60%;
