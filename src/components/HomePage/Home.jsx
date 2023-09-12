@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { FiMenu, FiX } from 'react-icons/fi';
 import '../Header.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Home.css'
 import liff from '@line/liff';
 import { getProfileData } from '../localStorageUtils';
