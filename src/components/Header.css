@@ -80,16 +80,10 @@ body {
         color: #fff;
         font-size: 2rem;
         margin-bottom: 0px;
-        margin-top: 10px;
-    }
-
-    .container{
-        padding-left: none;
     }
 
     .header {
-        padding: 0 2rem;
-        padding-left: 0px;
+    
     }
     .menu-container {
         width: 60%;
