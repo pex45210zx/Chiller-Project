@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import LiffLogin from './components/LineLIFFPage/LiffLogin.jsx';
-import Home from './components/HomePage/Home.jsx';
-import RegisterChiller from './components/RegisterPage/RegisterChiller.jsx';
-import YourChiller from './components/YourChillerPage/YourChiller.jsx';
-import Delete from './components/DeletePage/Delete.jsx';
+import LiffLogin from './pages/LineLIFFPage/LiffLogin.jsx';
+import Home from './pages/HomePage/Home.jsx';
+import RegisterChiller from './pages/RegisterPage/RegisterChiller.jsx';
+import YourChiller from './pages/YourChillerPage/YourChiller.jsx';
+import Delete from './pages/DeletePage/Delete.jsx'
 
 function App() {
   return (
