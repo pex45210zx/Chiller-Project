@@ -23,7 +23,7 @@ function LiffLogin() {
                     setDisplayName(profile.displayName);
 
                     // Store profile data in local storage
-                    saveProfileData(profile.pictureUrl,profile.displayName);
+                    saveProfileData(profile.pictureUrl,profile.displayName,profile.userId);
 
                     // Navigate to the Home page after successful login
                     navigate('/home');
