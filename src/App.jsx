@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Routes>
-        {/* <Route path="/" element={<LiffLogin />} /> */}
+        <Route path="/" element={<LiffLogin />} />
         <Route path="/home" element={<Home />} />
         <Route path="/register-chiller" element={<RegisterChiller />} />
         <Route path="/your-chiller" element={<YourChiller />} />
