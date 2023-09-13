@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../Header.css';
 import { useNavigate } from 'react-router-dom';
 import './RegisterChiller.css';
 import liff from '@line/liff';
 import { getProfileData } from '../localStorageUtils';
 import Header from '../header';
-import { loadSpreadsheetData } from '../googleSheetsAPI.jsx';
+import { loadSpreadsheetData, saveDataToGoogleSheet } from '../googleSheetsAPI.jsx';
 
 function RegisterChiller() {
   const [click, setClick] = useState(false);
@@ -28,17 +28,22 @@ function RegisterChiller() {
     setChillerId(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-      e.preventDefault();
+  const handleChillerNameChange = (e) => {
+    setChillerName(e.target.value);
+  };
 
-      const { userId } = getProfileData();
-    
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const { userId } = getProfileData();
+
+    try {
       // Load data from Google Spreadsheet
-      const spreadsheetData = loadSpreadsheetData();
-    
+      const spreadsheetData = await loadSpreadsheetData();
+
       // Find a match for the entered Chiller ID
       const match = spreadsheetData.find((row) => row.ChillerID === chillerId);
-    
+
       if (match) {
         // If a match is found, update the Chiller Name and User ID in the spreadsheet
         const updatedData = spreadsheetData.map((row) => {
@@ -48,17 +53,20 @@ function RegisterChiller() {
           }
           return row;
         });
-    
+
         // Save the updated data back to the Google Spreadsheet
-        saveDataToGoogleSheet(updatedData);
-    
+        await saveDataToGoogleSheet(updatedData);
+
         // Optionally, navigate to another page or show a success message
         console.log('Chiller ID is correct. Registration successful.');
         navigate('/register-chiller');
       } else {
         // If no match is found, display an error message
         console.log('Chiller ID is incorrect. Please check and try again.');
-      }  
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -85,6 +93,8 @@ function RegisterChiller() {
             <input
               type="text"
               placeholder="Enter your chiller name"
+              value={chillerName}
+              onChange={handleChillerNameChange}
             />
           </div>
           <button type="submit">Register Chiller</button>
