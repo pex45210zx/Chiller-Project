@@ -1,11 +1,10 @@
-// Import the required libraries
+import credentials from './My_credentials.json';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 
-// Load your Google Sheets credentials (you can store them securely)
-import credentials from './My_credentials.json';
 
 // Create a function to load data from the Google Spreadsheet
 export async function loadSpreadsheetData() {
+
   const doc = new GoogleSpreadsheet('1-lUJYqyQ5xjHY34HE139LZHVfJMfKRM4ZCuLwEV09jk');
 
   // Use service account credentials
