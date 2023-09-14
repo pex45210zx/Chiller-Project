@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import '../Header.css';
+import '../../components/Header.css';
 import { useNavigate } from 'react-router-dom';
 import './Delete.css'
-import { getProfileData } from '../localStorageUtils';
+import { getProfileData } from '../../components/localStorageUtils';
 import liff from '@line/liff';
-import Header from '../header';
+import Header from '../../components/Header.jsx';
 
 
 function Delete() {

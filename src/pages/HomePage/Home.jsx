@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import '../Header.css';
+import '../../components/Header.css';
 import { useNavigate } from 'react-router-dom';
 import './Home.css'
 import liff from '@line/liff';
-import { getProfileData } from '../localStorageUtils';
-import Header from '../header';
+import { getProfileData } from '../../components/localStorageUtils';
+import Header from '../../components/Header.jsx';
 
 
 function Home() {

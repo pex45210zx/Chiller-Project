@@ -1,7 +1,7 @@
 import liff from '@line/liff';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { saveProfileData } from '../localStorageUtils';
+import { saveProfileData } from '../../components/localStorageUtils';
 
 function LiffLogin() {
     const [profilePicture, setProfilePicture] = useState('');
