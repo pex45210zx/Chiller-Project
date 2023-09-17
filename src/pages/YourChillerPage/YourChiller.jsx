@@ -5,18 +5,29 @@ import './YourChiller.css';
 import { getProfileData } from '../../components/localStorageUtils';
 import liff from '@line/liff';
 import Header from '../../components/Header.jsx';
-import { fetchChillerData } from '../../components/googleSheetsApi'; // Import your fetchChillerData function
+import { fetchChillerData } from '../../components/googleSheetsApi';
 
 function YourChiller() {
   const [click, setClick] = useState(false);
-  const [chillerOptions, setChillerOptions] = useState([]); // State to store chiller options
-  const [selectedChiller, setSelectedChiller] = useState(''); // State to store the selected chiller
-  const [selectedMode, setSelectedMode] = useState(''); // State to store the selected chiller mode
+  const [chillerOptions, setChillerOptions] = useState([]);
+  const [selectedChiller, setSelectedChiller] = useState('');
+  const [selectedMode, setSelectedMode] = useState('');
   const navigate = useNavigate();
   const { profilePicture, displayName } = getProfileData();
+  const [chillerHighTemp, setHighTemp] = useState('');
+  const [chillerLowTemp, setLowTemp] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleClick = () => {
     setClick(!click);
+  };
+
+  const handleChillerHighTemp = (e) => {
+    setHighTemp(e.target.value);
+  };
+
+  const handleChillerLowTemp = (e) => {
+    setLowTemp(e.target.value);
   };
 
   const handleLogout = () => {
@@ -27,27 +38,42 @@ function YourChiller() {
 
   useEffect(() => {
     async function fetchData() {
-      const { userId } = getProfileData(); // Retrieve the userId from localStorage
+      const { userId } = getProfileData();
 
-      // Fetch the chiller data from the spreadsheet
       const chillerData = await fetchChillerData();
 
-      // Filter chiller options where userId matches
       const filteredChillers = chillerData.filter((chiller) => chiller.userId === userId);
 
-      // Set the filtered chiller options in state
       setChillerOptions(filteredChillers);
     }
 
     fetchData();
-  }, []); // Empty dependency array to run the effect only once on component mount
+  }, []);
 
   const handleChillerChange = (e) => {
     setSelectedChiller(e.target.value);
+    // Reset temperature values when the chiller is changed
+    setHighTemp('');
+    setLowTemp('');
   };
 
   const handleModeChange = (e) => {
     setSelectedMode(e.target.value);
+    // Set default temperature values based on the selected mode
+    switch (e.target.value) {
+      case 'Freshwater fish':
+        setHighTemp('30');
+        setLowTemp('28');
+        break;
+      case 'Marine fish':
+        // Set default values for other modes
+        // Add cases for other modes if needed
+        break;
+      // Add cases for other modes if needed
+      default:
+        setHighTemp('');
+        setLowTemp('');
+    }
   };
 
   const modeOptions = [
@@ -57,6 +83,66 @@ function YourChiller() {
     'Aquatic plant',
     'Customize',
   ];
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    // Check if the selected mode is 'Customize' and validate temperature inputs
+    if (selectedMode === 'Customize' && (!chillerHighTemp || !chillerLowTemp)) {
+      setErrorMessage('Please enter both high and low temperatures.');
+      return;
+    }
+  
+    // Add a check to ensure high temperature is not less than low temperature
+    if (parseInt(chillerHighTemp) < parseInt(chillerLowTemp)) {
+      setErrorMessage('High temperature must be greater than low temperature.');
+      return;
+    }
+  
+    const { userId } = getProfileData();
+  
+    // Find the chiller object based on selectedChiller and userId
+    const selectedChillerObj = chillerOptions.find(
+      (chiller) => chiller.chillerName === selectedChiller && chiller.userId === userId
+    );
+  
+    if (!selectedChillerObj) {
+      setErrorMessage('Chiller not found for the selected user.');
+      return;
+    }
+  
+    // Update the chiller data in the spreadsheet
+    try {
+      const response = await fetch(
+        `https://api.sheety.co/313ba156926928db7871fc95577d36d9/chillerRegister/data/${selectedChillerObj.id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            datum: {
+              chillerMode: selectedMode,
+              highTemp: chillerHighTemp,
+              lowTemp: chillerLowTemp,
+            },
+          }),
+        }
+      );
+  
+      if (response.ok) {
+        console.log('Chiller data updated successfully');
+        setErrorMessage('Chiller data updated successfully.');
+      } else {
+        console.error('Failed to update chiller data', response.status, await response.text());
+        setErrorMessage('Failed to update chiller data.');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+      setErrorMessage('An error occurred while updating chiller data.');
+    }
+  };
+  
 
   return (
     <div className="header">
@@ -91,6 +177,26 @@ function YourChiller() {
             ))}
           </select>
         </div>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Set high temperature"
+              value={chillerHighTemp}
+              onChange={handleChillerHighTemp}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              placeholder="Set low temperature"
+              value={chillerLowTemp}
+              onChange={handleChillerLowTemp}
+            />
+          </div>
+          <button type="submit">Submit Setting</button>
+        </form>
+        {errorMessage && <p className="error-message">{errorMessage}</p>}
       </div>
     </div>
   );
