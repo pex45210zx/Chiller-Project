@@ -6,7 +6,6 @@ import liff from '@line/liff';
 import { getProfileData } from '../../components/localStorageUtils';
 import Header from '../../components/Header.jsx';
 import { fetchChillerData } from '../../components/googleSheetsApi';
-import LineChart from '../../components/LineChart';
 
 function Home() {
   const [click, setClick] = useState(false);
@@ -14,8 +13,7 @@ function Home() {
   const { profilePicture, displayName } = getProfileData();
   const [chillerOptions, setChillerOptions] = useState([]);
   const [selectedChiller, setSelectedChiller] = useState('');
-  const [chillerId, setChillerId] = useState(''); // Track selected chillerId
-  const [chartData, setChartData] = useState({ labels: [], datasets: [] }); // Data for the chart
+  
 
   useEffect(() => {
     async function fetchData() {
@@ -30,7 +28,7 @@ function Home() {
 
     fetchData();
   }, []);
-  
+
   const handleClick = () => {
     setClick(!click);
   };
@@ -82,32 +80,6 @@ const handleLogout = () => {
     }
   };
 
-  // Function to parse chiller data and prepare it for the line chart
-  const parseChillerData = (data) => {
-    // Implement parsing logic here based on your data structure
-    // Create an object with 'labels' and 'datasets' properties
-    // 'labels' should contain an array of timestamps, and 'datasets' should contain temperature data
-    // Format your data according to the format expected by the LineChart component
-
-    const labels = []; // Array of timestamps
-    const temperatureData = []; // Array of temperature values
-
-    // Implement the logic to extract data from 'data' and populate 'labels' and 'temperatureData' arrays
-
-    return {
-      labels: labels,
-      datasets: [
-        {
-          label: 'Temperature (°C)',
-          data: temperatureData,
-          borderColor: 'rgb(75, 192, 192)',
-          borderWidth: 2,
-          fill: false,
-        },
-      ],
-    };
-  };
-
   return (
     <div className="header">
       <Header
@@ -132,7 +104,7 @@ const handleLogout = () => {
         </div>
       </div>
       <div className="line-chart">
-        <LineChart chartData={chartData} />
+        
       </div>
     </div>
   );
