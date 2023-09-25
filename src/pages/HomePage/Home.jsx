@@ -7,13 +7,12 @@ import { getProfileData } from '../../components/localStorageUtils';
 import Header from '../../components/Header.jsx';
 import { fetchChillerData } from '../../components/googleSheetsApi';
 
-
 function Home() {
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
   const { profilePicture, displayName } = getProfileData();
   const [chillerOptions, setChillerOptions] = useState([]);
-  const [selectedChiller, setSelectedChiller] = useState('');
+  const [selectedChiller, setSelectedChiller] = useState(''); // State to track selected chiller
 
   useEffect(() => {
     async function fetchData() {
@@ -22,9 +21,16 @@ function Home() {
       const chillerData = await fetchChillerData();
       console.log(chillerData);
 
+      // Filter chillers for the current user
       const filteredChillers = chillerData.filter((chiller) => chiller.userId === userId);
 
+      // Set all user's chillers in chillerOptions
       setChillerOptions(filteredChillers);
+
+      // If there are any chillers, select the first one by default
+      if (filteredChillers.length > 0) {
+        setSelectedChiller(filteredChillers[0].chillerName);
+      }
     }
 
     fetchData();
@@ -40,48 +46,10 @@ function Home() {
     console.log('clicked logout');
   };
 
-  const handleChillerChange = async (e) => {
-    const selectedChillerName = e.target.value;
-  
-    // Check if a chiller was selected
-    if (!selectedChillerName) {
-      // You may want to clear or reset your Chiller Details here
-      return;
-    }
-  
-    try {
-      const chillerData = await fetchChillerData();
-  
-      if (chillerData === null) {
-        return; // Handle the error or exit if necessary
-      }
-  
-      // Find the selected chiller by its name
-      const selectedChiller = chillerData.find((chiller) => chiller.chillerName === selectedChillerName);
-  
-      if (selectedChiller) {
-        // Now you can access the data from columns C, D, E, F, G
-        const chillerDetails = {
-          chillerName: selectedChiller.chillerName,
-          chillerMode: selectedChiller.chillerMode,
-          highTemp: selectedChiller.highTemp,
-          lowTemp: selectedChiller.lowTemp,
-          currentTemp: selectedChiller.currentTemp,
-        };
-  
-        // You can do something with the chillerDetails data here, such as displaying it in your component
-        console.log(chillerDetails);
-  
-        // Ensure that the state is updated when a chiller is selected
-        setSelectedChiller(chillerDetails);
-      } else {
-        console.error('Selected chiller not found in the spreadsheet');
-      }
-    } catch (error) {
-      // Handle any network or other errors
-      console.error('An error occurred:', error);
-    }
-  };  
+  // Function to handle chiller selection from the dropdown
+  const handleChillerChange = (e) => {
+    setSelectedChiller(e.target.value);
+  };
 
   return (
     <div className="header">
@@ -106,16 +74,15 @@ function Home() {
           </select>
         </div>
         <div className="chiller-details">
-          {selectedChiller && (
-            <div>
-              <h2>Chiller Details</h2>
-              <p><strong>Chiller Name:</strong> {selectedChiller.chillerName}</p>
-              <p><strong>Chiller Mode:</strong> {selectedChiller.chillerMode}</p>
-              <p><strong>High Temperature:</strong> {selectedChiller.highTemp}</p>
-              <p><strong>Low Temperature:</strong> {selectedChiller.lowTemp}</p>
-              <p><strong>Current Temperature:</strong> {selectedChiller.currentTemp}</p>
+          {chillerOptions.map((chiller) => (
+            <div key={chiller.id} style={{ display: chiller.chillerName === selectedChiller ? 'block' : 'none' }}>
+              <h2>Chiller Details for {chiller.chillerName}</h2>
+              <p><strong>Chiller Mode:</strong> {chiller.chillerMode}</p>
+              <p><strong>High Temperature:</strong> {chiller.highTemp}</p>
+              <p><strong>Low Temperature:</strong> {chiller.lowTemp}</p>
+              <p><strong>Current Temperature:</strong> {chiller.currentTemp}</p>
             </div>
-          )}
+          ))}
         </div>
       </div>
     </div>
