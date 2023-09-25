@@ -34,45 +34,56 @@ function RegisterChiller() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const { userId } = getProfileData(); // Retrieve the userId from localStorage
 
+    if (!chillerName.trim()) {
+      console.error('Chiller name cannot be empty');
+      return;
+    }
+  
     try {
       // Fetch the data from the Sheety API using the function
       const chillerData = await fetchChillerData();
-
+  
       if (chillerData === null) {
         return; // Exit the function if there was an error
       }
-
+  
       // Check if the chillerId exists in the spreadsheet
       const matchingChiller = chillerData.find((row) => row.chillerId === chillerId);
-
+  
       if (matchingChiller) {
         // Check if the provided userId matches the one registered with the chillerId
         if (!matchingChiller.userId || matchingChiller.userId === userId || matchingChiller.userId === 'null' || matchingChiller.userId === '') {
+          // Check if the chillerName is already used by the current userId
+          const isNameUsedByCurrentUser = chillerData.some((row) => row.userId === userId && row.chillerName === chillerName);
+  
+          if (isNameUsedByCurrentUser) {
+            console.error('This Chiller name is already used by you');
+            return; // Exit the function to prevent submission
+          }
+  
           // Proceed with the data insertion/update
         } else {
           console.error('This Chiller is already registered with a different userId');
           return; // Exit the function to prevent submission
         }
-
-
-
+  
         // Update the chillerName and userId in the corresponding row
         matchingChiller.chillerName = chillerName;
         matchingChiller.userId = userId; // Add this line
-
+  
         // Send a PUT request to update the row in the Sheety API
         try {
-          const response = await fetch(`https://api.sheety.co/313ba156926928db7871fc95577d36d9/chillerRegister/data/${matchingChiller.id}`, {
+          const response = await fetch(`https://api.sheety.co/49d0c21a5626a3a181f1ba24be577500/chillerRegister/data/${matchingChiller.id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({ datum: matchingChiller }), // Use the correct property name 'datum'
           });
-
+  
           if (response.ok) {
             // Data was successfully updated
             console.log('Chiller data updated successfully');
@@ -87,7 +98,7 @@ function RegisterChiller() {
       } else {
         console.error('Chiller ID not found in the spreadsheet');
       }
-
+  
       // Optionally, you can clear the input fields after a successful update or when chiller ID is not found
       setChillerId('');
       setChillerName('');
@@ -95,7 +106,7 @@ function RegisterChiller() {
       // Handle any network or other errors
       console.error('An error occurred:', error);
     }
-  };
+  };  
 
 
   return (

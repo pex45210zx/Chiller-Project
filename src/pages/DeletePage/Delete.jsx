@@ -90,7 +90,7 @@ function Delete() {
 
       // Update data using the Sheety API with a PUT request
       const updateResponse = await fetch(
-        `https://api.sheety.co/313ba156926928db7871fc95577d36d9/chillerRegister/data/${chillerIdToUpdate}`,
+        `https://api.sheety.co/49d0c21a5626a3a181f1ba24be577500/chillerRegister/data/${chillerIdToUpdate}`,
         {
           method: 'PUT',
           headers: {

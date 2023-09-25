@@ -114,7 +114,7 @@ function YourChiller() {
     // Update the chiller data in the spreadsheet
     try {
       const response = await fetch(
-        `https://api.sheety.co/313ba156926928db7871fc95577d36d9/chillerRegister/data/${selectedChillerObj.id}`,
+        `https://api.sheety.co/49d0c21a5626a3a181f1ba24be577500/chillerRegister/data/${selectedChillerObj.id}`,
         {
           method: 'PUT',
           headers: {
