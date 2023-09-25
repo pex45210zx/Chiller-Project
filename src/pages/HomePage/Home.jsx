@@ -42,9 +42,46 @@ function Home() {
 
   const handleChillerChange = async (e) => {
     const selectedChillerName = e.target.value;
-    setSelectedChiller(selectedChillerName);
-  };
   
+    // Check if a chiller was selected
+    if (!selectedChillerName) {
+      // You may want to clear or reset your Chiller Details here
+      return;
+    }
+  
+    try {
+      const chillerData = await fetchChillerData();
+  
+      if (chillerData === null) {
+        return; // Handle the error or exit if necessary
+      }
+  
+      // Find the selected chiller by its name
+      const selectedChiller = chillerData.find((chiller) => chiller.chillerName === selectedChillerName);
+  
+      if (selectedChiller) {
+        // Now you can access the data from columns C, D, E, F, G
+        const chillerDetails = {
+          chillerName: selectedChiller.chillerName,
+          chillerMode: selectedChiller.chillerMode,
+          highTemp: selectedChiller.highTemp,
+          lowTemp: selectedChiller.lowTemp,
+          currentTemp: selectedChiller.currentTemp,
+        };
+  
+        // You can do something with the chillerDetails data here, such as displaying it in your component
+        console.log(chillerDetails);
+  
+        // Ensure that the state is updated when a chiller is selected
+        setSelectedChiller(chillerDetails);
+      } else {
+        console.error('Selected chiller not found in the spreadsheet');
+      }
+    } catch (error) {
+      // Handle any network or other errors
+      console.error('An error occurred:', error);
+    }
+  };  
 
   return (
     <div className="header">
@@ -68,8 +105,17 @@ function Home() {
             ))}
           </select>
         </div>
-        <div className="chiller-status">
-
+        <div className="chiller-details">
+          {selectedChiller && (
+            <div>
+              <h2>Chiller Details</h2>
+              <p><strong>Chiller Name:</strong> {selectedChiller.chillerName}</p>
+              <p><strong>Chiller Mode:</strong> {selectedChiller.chillerMode}</p>
+              <p><strong>High Temperature:</strong> {selectedChiller.highTemp}</p>
+              <p><strong>Low Temperature:</strong> {selectedChiller.lowTemp}</p>
+              <p><strong>Current Temperature:</strong> {selectedChiller.currentTemp}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
