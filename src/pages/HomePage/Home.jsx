@@ -61,28 +61,35 @@ function Home() {
         handleLogout={handleLogout}
       />
       <div className="bodyHome">
-        <h1>Homepage</h1>
-        <div className="chiller-dropdown">
-          <label htmlFor="chiller-select">Select your chiller:</label>
-          <select id="chiller-select" value={selectedChiller} onChange={handleChillerChange}>
-            <option value="">Select a chiller</option>
-            {chillerOptions.map((chiller) => (
-              <option key={chiller.id} value={chiller.chillerName}>
-                {chiller.chillerName}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="chiller-details">
-          {chillerOptions.map((chiller) => (
-            <div key={chiller.id} style={{ display: chiller.chillerName === selectedChiller ? 'block' : 'none' }}>
-              <h2>Chiller Details for {chiller.chillerName}</h2>
-              <p><strong>Chiller Mode:</strong> {chiller.chillerMode}</p>
-              <p><strong>High Temperature:</strong> {chiller.highTemp}</p>
-              <p><strong>Low Temperature:</strong> {chiller.lowTemp}</p>
-              <p><strong>Current Temperature:</strong> {chiller.currentTemp}</p>
+        <div className="body-con">
+          <div className="homepage-title">
+            Homepage
+          </div>
+          <div className="chiller-dropdown">
+            <label className="chiller-select">Select your chiller</label>
+            <div className="selection-area">
+              <select id="chiller-select" value={selectedChiller} onChange={handleChillerChange}>
+                {chillerOptions.map((chiller) => (
+                  <option key={chiller.id} value={chiller.chillerName}>
+                    {chiller.chillerName}
+                  </option>
+                ))}
+              </select>
             </div>
-          ))}
+          </div>
+          <div className="chiller-details">
+            {chillerOptions.map((chiller) => (
+              <div key={chiller.id} style={{ display: chiller.chillerName === selectedChiller ? 'block' : 'none' }}>
+                <div className="chiller-name">
+                {chiller.chillerName}
+                </div>
+                <p><strong>Chiller Mode:</strong> {chiller.chillerMode}</p>
+                <p><strong>Current Temperature:</strong> {chiller.currentTemp}</p>
+                <p><strong>High Temperature:</strong> {chiller.highTemp}</p>
+                <p><strong>Low Temperature:</strong> {chiller.lowTemp}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

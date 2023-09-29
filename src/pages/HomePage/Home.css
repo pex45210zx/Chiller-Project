@@ -1,7 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap');
+
 .bodyHome {
     padding-left: 15%;
+    background: linear-gradient(180deg, #71E5FF 0%, #0053A0 100%);
+    margin-top: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-@media  screen and (max-width: 480px) {
+.body-con {
+    margin: 30px 50% 0 5%;
+
+}
+
+.homepage-title {
+    color: #FFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Signika Negative', sans-serif;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+/* Add these styles to your Home.css file */
+.chiller-select {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-bottom: 25px;
+    padding-top: 50px;
+    color: #000;
+    font-family: 'Signika Negative', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+}
+
+/* Styling the select element */
+.chiller-dropdown select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.chiller-dropdown select:hover {
+    background-color: #e0e0e0;
+}
+
+/* Styling the label */
+.chiller-dropdown label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Styling the dropdown container */
+.chiller-dropdown {
+    margin-bottom: 20px;
+    margin-right: 65%;
+}
+
+/* Styling the dropdown arrow */
+.chiller-dropdown::after {
+    content: '\25BC';
+    /* Unicode arrow down character */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Styling the options */
+.chiller-dropdown select option {
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 16px;
+    padding-bottom: 4px;
+    font-family: 'Signika Negative', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.selection-area {
+    margin-top: 10px;
+    border-radius: 15px;
+    padding: 2px;
+    border: 2px solid #323232;
+    background: #EFEFEF;
+    font-size: 16px;
+    padding-bottom: 4px;
+    color: #000;
+    font-family: 'Signika Negative', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.chiller-name {
+    color: #111;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Signika Negative', sans-serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.chiller-details {
+    border-radius: 10px;
+    padding: 15px;
+    background: linear-gradient(180deg, #C0F4FF 0%, rgba(0, 146, 178, 0.00) 100%);
+}
+
+@media screen and (max-width: 480px) {
+    .bodyHome {
+        padding-left: 0%;
+    }
+
+    .body-con {
+        margin: 30px 15px 10px;
     
+    }
+    .chiller-dropdown {
+        margin-bottom: 20px;
+        margin-right: 50%;
+    }
 }
