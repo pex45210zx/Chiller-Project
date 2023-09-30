@@ -78,9 +78,36 @@ body {
     /* Remove default padding */
 }
 
-li.menu-link {
-    width: 241px;
+.menu-button {
+    display: flex;
+    /* Use flexbox to center content */
+    align-items: center;
+    /* Vertically center content */
+    justify-content: center;
+    /* Horizontally center content */
+    padding: 5px;
+    width: 230px;
     height: 45px;
+    background-color: #2a89c4;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    transition: background-color .3s;
+    text-align: center;
+    margin: 10px 0px 0px 6px;
+    font-size: 20px;
+}
+
+.menu-button:hover {
+    background-color: #0056b3;
+    /* Change this to your desired button background color on hover */
+}
+
+
+/* li.menu-link {
+    
     border-radius: 10px;
     text-decoration: none;
     background: #2A89C4;
@@ -95,6 +122,13 @@ li.menu-link a {
     font-weight: 400;
     text-decoration: none;
     padding-left: 3%;
+} */
+
+.icon {
+    display: block;
+    font-size: 25px;
+    padding-right: 10px;
+    padding-top: 5px;
 }
 
 .toggle-menu {
@@ -102,7 +136,7 @@ li.menu-link a {
 }
 
 .menu-container {
-    width: 15%;
+    width: 255px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -117,21 +151,19 @@ li.menu-link a {
 
 .menu-link-logout {
     position: absolute;
-    bottom: 20px;
+    bottom: 20px; /* Adjust the distance from the bottom as needed */
     text-align: center;
     text-decoration: none;
     font-size: 20px;
     font-weight: 400;
     color: #fff;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin: 0 14%;
-}
+    width: 100%; /* Make the link take up the full width of the sidebar */
+  }
 
 .logout-link {
-    display: inline-block;
+    display: flex;
     padding: 10px;
-    width: 160px;
+    width: 200px;
     background-color: red;
     color: #fff;
     text-decoration: none;
@@ -139,14 +171,19 @@ li.menu-link a {
     border: none;
     border-radius: 10px;
     transition: background-color .3s;
-  }
-  
-  .logout-link:hover {
-    background-color: #d00; /* Change this to your desired button background color on hover */
-  }
-  
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px 0px 17px;
+}
 
-@media screen and (max-width: 480px) {
+.logout-link:hover {
+    background-color: #d00;
+    /* Change this to your desired button background color on hover */
+}
+
+
+
+@media screen and (max-width: 1330px) {
     .toggle-menu {
         display: block;
         color: #fff;
@@ -157,7 +194,7 @@ li.menu-link a {
     }
 
     .menu-container {
-        width: 60%;
+        width: 255px;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -175,6 +212,15 @@ li.menu-link a {
         opacity: 1;
     }
 
+    .user-profile {
+        position: absolute;
+        top: 14px;
+        right: 0;
+        display: flex;
+        align-items: center;
+        margin-right: 10px; /* Add some spacing between the picture and the top/right edges */
+    }
+
     .user-profile span {
         margin-right: 10px;
         display: none;
@@ -183,5 +229,53 @@ li.menu-link a {
     .logo {
         display: none;
     }
+}
 
+
+@media screen and (max-width: 480px) {
+    .toggle-menu {
+        display: block;
+        color: #fff;
+        font-size: 3rem;
+        margin-bottom: 0px;
+        padding-left: 15px;
+        padding-top: 10px;
+    }
+
+    .menu-container {
+        width: 255px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80px;
+        left: -100%;
+        opacity: 0;
+        transition: 0.5s ease;
+        background: #323232;
+        z-index: 1;
+    }
+
+    .menu-container.active {
+        left: 0;
+        opacity: 1;
+    }
+
+    .user-profile {
+        position: absolute;
+        top: 14px;
+        right: 0;
+        display: flex;
+        align-items: center;
+        margin-right: 10px; /* Add some spacing between the picture and the top/right edges */
+    }
+
+    .user-profile span {
+        margin-right: 10px;
+        display: none;
+    }
+
+    .logo {
+        display: none;
+    }
 }
