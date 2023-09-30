@@ -21,25 +21,25 @@ function Header({ click, handleClick, profilePicture, displayName, handleLogout 
         </div>
         <div className={`menu-container ${click ? 'active' : ''}`}>
           <ul className="menu">
-            <li className="menu-link">
-              <Link to="/home">HOME</Link>
-            </li>
-            <li className="menu-link">
-              <Link to="/register-chiller">REGISTER CHILLER</Link>
-            </li>
-            <li className="menu-link">
-              <Link to="/your-chiller">YOUR CHILLER</Link>
-            </li>
-            <li className="menu-link">
-              <Link to="/delete">DELETE CHILLER</Link>
-            </li>
-            <li className="menu-link">
+              <li className="menu-link">
+                <Link to="/home">HOME</Link>
+              </li>
+              <li className="menu-link">
+                <Link to="/register-chiller">REGISTER CHILLER</Link>
+              </li>
+              <li className="menu-link">
+                <Link to="/your-chiller">YOUR CHILLER</Link>
+              </li>
+              <li className="menu-link">
+                <Link to="/delete">DELETE CHILLER</Link>
+              </li>
+            <li className="menu-link-logout">
               <a onClick={handleLogout}>LOG OUT</a>
             </li>
           </ul>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }
 

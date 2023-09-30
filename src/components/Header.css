@@ -1,13 +1,20 @@
 /* Home.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap');
+
+
 body {
     margin: 0;
     padding: 0;
+
 }
 
 /* If there are other containers, make sure to remove margin and padding from them as well. */
 .container {
     margin: 0;
     padding: 0;
+    font-family: 'Signika Negative', sans-serif;
+
 }
 
 
@@ -71,15 +78,23 @@ body {
     /* Remove default padding */
 }
 
-.menu li {
-    padding-top: 2rem;
+li.menu-link {
+    width: 241px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    text-decoration: none;
+    background: #2A89C4;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; 
 }
 
-.menu li a {
-    text-decoration: none;
+li.menu-link a {
     color: #fff;
-    padding-left: 2rem;
-    cursor: pointer;
+    font-size: 2rem; /* Updated font size to 2rem */
+    font-weight: 400;
+    text-decoration: none;
 }
 
 .toggle-menu {
@@ -100,7 +115,7 @@ body {
     z-index: 1;
 }
 
-.menu-link:last-child {
+.menu-link-logout {
     position: absolute;
     bottom: 30px;
     text-align: center;
@@ -136,6 +151,12 @@ body {
     }
 
     .user-profile span {
+        margin-right: 10px;
         display: none;
     }
+
+    .logo {
+        display: none;
+    }
+
 }

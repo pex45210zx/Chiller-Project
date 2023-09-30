@@ -15,6 +15,18 @@ function Home() {
   const [selectedChiller, setSelectedChiller] = useState(''); // State to track selected chiller
 
   useEffect(() => {
+    const handleBackButton = (e) => {
+      e.preventDefault();
+    };
+
+    window.addEventListener('popstate', handleBackButton);
+
+    return () => {
+      window.removeEventListener('popstate', handleBackButton);
+    };
+  }, []);
+
+  useEffect(() => {
     async function fetchData() {
       const { userId } = getProfileData();
 
@@ -42,7 +54,7 @@ function Home() {
 
   const handleLogout = () => {
     liff.logout();
-    navigate('/', { replace: true });
+    navigate('/');
     console.log('clicked logout');
   };
 
@@ -81,7 +93,7 @@ function Home() {
             {chillerOptions.map((chiller) => (
               <div key={chiller.id} style={{ display: chiller.chillerName === selectedChiller ? 'block' : 'none' }}>
                 <div className="chiller-name">
-                {chiller.chillerName}
+                  {chiller.chillerName}
                 </div>
                 <p><strong>Chiller Mode:</strong> {chiller.chillerMode}</p>
                 <p><strong>Current Temperature:</strong> {chiller.currentTemp}</p>
