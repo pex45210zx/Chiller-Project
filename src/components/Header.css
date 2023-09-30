@@ -23,28 +23,52 @@ body {
     align-items: center;
 }
 
+.flex-container {
+    display: flex;
+    align-items: center;
+    /* Center vertically */
+    justify-content: center;
+    /* Center horizontally */
+    flex: 1;
+    /* Allow the flex container to expand and fill the available space */
+}
+
+.logo {
+    width: 40px;
+    /* Set the width as per your design */
+    height: 40px;
+    /* Maintain aspect ratio */
+    /* Add more styles as needed */
+}
+
+
 .user-profile {
     display: flex;
     align-items: center;
 }
 
 .user-profile img {
-    width: 50px; /* Adjust the size as needed */
-    height: 50px; /* Adjust the size as needed */
-    border-radius: 50%; /* Create a circular shape */
-    margin-right: 15px; /* Add some spacing between the image and text */
+    width: 50px;
+    /* Adjust the size as needed */
+    height: 50px;
+    /* Adjust the size as needed */
+    border-radius: 50%;
+    /* Create a circular shape */
+    margin-right: 15px;
+    /* Add some spacing between the image and text */
     margin-left: 15px;
 }
 
 .user-profile span {
-   display: flex;
-   text-decoration: none;
-   color: #fff;
+    display: flex;
+    text-decoration: none;
+    color: #fff;
 }
 
 .menu {
     list-style-type: none;
-    padding: 0; /* Remove default padding */
+    padding: 0;
+    /* Remove default padding */
 }
 
 .menu li {
@@ -61,6 +85,7 @@ body {
 .toggle-menu {
     display: none;
 }
+
 .menu-container {
     width: 15%;
     height: 100%;
@@ -74,11 +99,12 @@ body {
     background: #333;
     z-index: 1;
 }
+
 .menu-link:last-child {
     position: absolute;
     bottom: 30px;
     text-align: center;
-  }
+}
 
 @media screen and (max-width: 480px) {
     .toggle-menu {
@@ -100,7 +126,7 @@ body {
         left: -100%;
         opacity: 0;
         transition: 0.5s ease;
-        background: #333;
+        background: #323232;
         z-index: 1;
     }
 
@@ -108,6 +134,7 @@ body {
         left: 0;
         opacity: 1;
     }
+
     .user-profile span {
         display: none;
     }

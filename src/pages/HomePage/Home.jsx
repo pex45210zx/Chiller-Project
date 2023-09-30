@@ -42,7 +42,7 @@ function Home() {
 
   const handleLogout = () => {
     liff.logout();
-    navigate('/');
+    navigate('/', { replace: true });
     console.log('clicked logout');
   };
 

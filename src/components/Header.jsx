@@ -3,6 +3,7 @@ import React from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import './Header.css';
 import { Link } from 'react-router-dom';
+import logo from '../images/logo2.png'
 
 function Header({ click, handleClick, profilePicture, displayName, handleLogout }) {
   return (
@@ -14,6 +15,9 @@ function Header({ click, handleClick, profilePicture, displayName, handleLogout 
         <div className="user-profile">
           <img src={profilePicture} alt="User Profile" />
           <span>{displayName}</span>
+        </div>
+        <div className="flex-container">
+          <img src={logo} alt="aquatic Logo" className="logo" />
         </div>
         <div className={`menu-container ${click ? 'active' : ''}`}>
           <ul className="menu">
