@@ -34,7 +34,7 @@ function Header({ click, handleClick, profilePicture, displayName, handleLogout 
                 <Link to="/delete">DELETE CHILLER</Link>
               </li>
             <li className="menu-link-logout">
-              <a onClick={handleLogout}>LOG OUT</a>
+              <a className="logout-link" onClick={handleLogout}>LOG OUT</a>
             </li>
           </ul>
         </div>
