@@ -86,31 +86,31 @@ function YourChiller() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Check if the selected mode is 'Customize' and validate temperature inputs
     if (selectedMode === 'Customize' && (!chillerHighTemp || !chillerLowTemp)) {
       setErrorMessage('Please enter both high and low temperatures.');
       return;
     }
-  
+
     // Add a check to ensure high temperature is not less than low temperature
     if (parseInt(chillerHighTemp) < parseInt(chillerLowTemp)) {
       setErrorMessage('High temperature must be greater than low temperature.');
       return;
     }
-  
+
     const { userId } = getProfileData();
-  
+
     // Find the chiller object based on selectedChiller and userId
     const selectedChillerObj = chillerOptions.find(
       (chiller) => chiller.chillerName === selectedChiller && chiller.userId === userId
     );
-  
+
     if (!selectedChillerObj) {
       setErrorMessage('Chiller not found for the selected user.');
       return;
     }
-  
+
     // Update the chiller data in the spreadsheet
     try {
       const response = await fetch(
@@ -129,7 +129,7 @@ function YourChiller() {
           }),
         }
       );
-  
+
       if (response.ok) {
         console.log('Chiller data updated successfully');
         setErrorMessage('Chiller data updated successfully.');
@@ -142,7 +142,7 @@ function YourChiller() {
       setErrorMessage('An error occurred while updating chiller data.');
     }
   };
-  
+
 
   return (
     <div className="header">
@@ -154,49 +154,51 @@ function YourChiller() {
         handleLogout={handleLogout}
       />
       <div className="bodyChiller">
-        <h1>Your Chiller Page</h1>
-        <div className="chiller-dropdown">
-          <label htmlFor="chiller-select">Select your chiller:</label>
-          <select id="chiller-select" value={selectedChiller} onChange={handleChillerChange}>
-            <option value="">Select a chiller</option>
-            {chillerOptions.map((chiller) => (
-              <option key={chiller.id} value={chiller.chillerName}>
-                {chiller.chillerName}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="mode-dropdown">
-          <label htmlFor="mode-select">Select chiller mode:</label>
-          <select id="mode-select" value={selectedMode} onChange={handleModeChange}>
-            <option value="">Select chiller mode</option>
-            {modeOptions.map((mode) => (
-              <option key={mode} value={mode}>
-                {mode}
-              </option>
-            ))}
-          </select>
-        </div>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="Set high temperature"
-              value={chillerHighTemp}
-              onChange={handleChillerHighTemp}
-            />
+        <div className="body-con">
+          <h1>Your Chiller Page</h1>
+          <div className="chiller-dropdown">
+            <label htmlFor="chiller-select">Select your chiller:</label>
+            <select id="chiller-select" value={selectedChiller} onChange={handleChillerChange}>
+              <option value="">Select a chiller</option>
+              {chillerOptions.map((chiller) => (
+                <option key={chiller.id} value={chiller.chillerName}>
+                  {chiller.chillerName}
+                </option>
+              ))}
+            </select>
           </div>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="Set low temperature"
-              value={chillerLowTemp}
-              onChange={handleChillerLowTemp}
-            />
+          <div className="mode-dropdown">
+            <label htmlFor="mode-select">Select chiller mode:</label>
+            <select id="mode-select" value={selectedMode} onChange={handleModeChange}>
+              <option value="">Select chiller mode</option>
+              {modeOptions.map((mode) => (
+                <option key={mode} value={mode}>
+                  {mode}
+                </option>
+              ))}
+            </select>
           </div>
-          <button type="submit">Submit Setting</button>
-        </form>
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Set high temperature"
+                value={chillerHighTemp}
+                onChange={handleChillerHighTemp}
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Set low temperature"
+                value={chillerLowTemp}
+                onChange={handleChillerLowTemp}
+              />
+            </div>
+            <button type="submit">Submit Setting</button>
+          </form>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+        </div>
       </div>
     </div>
   );

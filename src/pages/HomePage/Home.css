@@ -64,6 +64,10 @@
     margin-bottom: 10px;
 }
 
+.chiller-dropdown label a {
+    margin-right: 0px;
+}
+
 /* Styling the dropdown container */
 .chiller-dropdown {
     margin-bottom: 20px;
@@ -120,6 +124,23 @@
     padding: 15px;
     background: linear-gradient(180deg, #C0F4FF 0%, rgba(0, 146, 178, 0.00) 100%);
 }
+
+
+@media screen and (max-width: 1330px) {
+    .bodyHome {
+        padding-left: 0%;
+    }
+
+    .body-con {
+        margin: 30px 20% 0 5%;
+    
+    }
+    .chiller-dropdown {
+        margin-bottom: 20px;
+        margin-right: 50%;
+    }
+}
+
 
 @media screen and (max-width: 480px) {
     .bodyHome {

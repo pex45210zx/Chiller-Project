@@ -17,30 +17,36 @@ function Header({ click, handleClick, profilePicture, displayName, handleLogout 
           <img src={profilePicture} alt="User Profile" />
           <span>{displayName}</span>
         </div>
-        <div className="flex-container">
-          <img src={logo} alt="aquatic Logo" className="logo" />
-        </div>
+        {/* <div className="flex-container">
+          <img src={logo} alt="aquatic Logo" className="logo1" />
+        </div> */}
         <div className={`menu-container ${click ? 'active' : ''}`}>
           <ul className="menu">
+            <div className="logo1-area">
+              <div className="flex-container">
+                <img src={logo} alt="aqua Logo" className="logo1" />
+                <div className="brand-name">Aquatic Chiller</div>
+              </div>
+            </div>
             <li className="menu-link">
               <Link className="menu-button" to="/home">
                 <div className="icon"><FaHome /></div>HOME</Link>
             </li>
             <li className="menu-link">
               <Link className="menu-button" to="/register-chiller">
-              <div className="icon"><FaPenSquare /></div>REGISTER CHILLER</Link>
+                <div className="icon"><FaPenSquare /></div>REGISTER CHILLER</Link>
             </li>
             <li className="menu-link">
               <Link className="menu-button" to="/your-chiller">
-              <div className="icon"><FaSlidersH /></div>YOUR CHILLER</Link>
+                <div className="icon"><FaSlidersH /></div>YOUR CHILLER</Link>
             </li>
             <li className="menu-link">
               <Link className="menu-button" to="/delete">
-              <div className="icon"><FaTrashAlt /></div>DELETE CHILLER</Link>
+                <div className="icon"><FaTrashAlt /></div>DELETE CHILLER</Link>
             </li>
             <li className="menu-link-logout">
               <a className="logout-link" onClick={handleLogout}>
-              <div className="icon"><FaSignOutAlt /></div>LOG OUT</a>
+                <div className="icon"><FaSignOutAlt /></div>LOG OUT</a>
             </li>
           </ul>
 

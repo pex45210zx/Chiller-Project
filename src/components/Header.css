@@ -33,21 +33,30 @@ body {
 .flex-container {
     display: flex;
     align-items: center;
-    /* Center vertically */
     justify-content: center;
-    /* Center horizontally */
     flex: 1;
-    /* Allow the flex container to expand and fill the available space */
+    padding: 20px;
 }
 
-.logo {
-    width: 40px;
-    /* Set the width as per your design */
-    height: 40px;
-    /* Maintain aspect ratio */
+.brand-name {
+    font-size: 20px; /* Adjust the font size as needed */
+    color: #fff; /* Text color */
+    margin-left: 10px; /* Add spacing between the logo and text */
+  }
+  
+
+.logo1-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo1 {
+    /* Add the necessary styles for the logo when displayed */
+    width: 50px; /* Set the width as per your design */
+    height: 50px; /* Set the height as per your design */
     /* Add more styles as needed */
 }
-
 
 .user-profile {
     display: flex;
@@ -104,25 +113,6 @@ body {
     background-color: #0056b3;
     /* Change this to your desired button background color on hover */
 }
-
-
-/* li.menu-link {
-    
-    border-radius: 10px;
-    text-decoration: none;
-    background: #2A89C4;
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-li.menu-link a {
-    color: #fff;
-    font-size: 20px;
-    font-weight: 400;
-    text-decoration: none;
-    padding-left: 3%;
-} */
 
 .icon {
     display: block;
@@ -182,7 +172,6 @@ li.menu-link a {
 }
 
 
-
 @media screen and (max-width: 1330px) {
     .toggle-menu {
         display: block;
@@ -226,9 +215,6 @@ li.menu-link a {
         display: none;
     }
 
-    .logo {
-        display: none;
-    }
 }
 
 
@@ -275,7 +261,4 @@ li.menu-link a {
         display: none;
     }
 
-    .logo {
-        display: none;
-    }
 }
