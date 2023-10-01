@@ -1,5 +1,5 @@
 import React from 'react';
-import './CustomModal.css';
+import './modalPopUp.css';
 
 function ModalPopUp({ isOpen, onClose, message }) {
   return (

@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap');
+
+
 .custom-modal-overlay {
     position: fixed;
     top: 0;
@@ -9,34 +12,37 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
-  }
-  
-  .custom-modal {
-    background-color: #fff;
+}
+
+.custom-modal {
+    border-radius: 15px;
+    background: linear-gradient(180deg, #4DF 0%, #2C9BCD 40.95%, #083B86 100%);
     padding: 20px;
-    border-radius: 5px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-  }
-  
-  .modal-content {
+    font-family: 'Signika Negative', sans-serif;
+    font-size: 25px;
+    color: #fff;
+
+}
+
+.modal-content {
     text-align: center;
-  }
-  
-  .modal-message {
+}
+
+.modal-message {
     font-size: 18px;
     margin-bottom: 10px;
-  }
-  
-  .modal-close-button {
+}
+
+.modal-close-button {
     background-color: #007BFF;
     color: #fff;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .modal-close-button:hover {
+}
+
+.modal-close-button:hover {
     background-color: #0056b3;
-  }
-  
+}

@@ -6,6 +6,7 @@ import liff from '@line/liff';
 import { getProfileData } from '../../components/localStorageUtils';
 import Header from '../../components/Header.jsx';
 import { fetchChillerData } from '../../components/googleSheetsApi';
+import ModalPopUp from '../../components/modalPopUp';
 
 function RegisterChiller() {
   const [click, setClick] = useState(false);
@@ -13,6 +14,8 @@ function RegisterChiller() {
   const [chillerName, setChillerName] = useState('');
   const navigate = useNavigate();
   const { profilePicture, displayName } = getProfileData();
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal
+  const [modalMessage, setModalMessage] = useState('');
 
   const handleClick = () => {
     setClick(!click);
@@ -38,7 +41,8 @@ function RegisterChiller() {
     const { userId } = getProfileData(); // Retrieve the userId from localStorage
 
     if (!chillerName.trim()) {
-      window.alert('Chiller name cannot be empty');
+      setModalMessage('Chiller name cannot be empty');
+      setIsModalOpen(true); // Open the modal
       return;
     }
 
@@ -60,13 +64,15 @@ function RegisterChiller() {
           const isNameUsedByCurrentUser = chillerData.some((row) => row.userId === userId && row.chillerName === chillerName);
 
           if (isNameUsedByCurrentUser) {
-            window.alert('This Chiller name is already used by you');
+            setModalMessage('This Chiller name is already used by you');
+            setIsModalOpen(true);
             return; // Exit the function to prevent submission
           }
 
           // Proceed with the data insertion/update
         } else {
-          window.alert('This Chiller is already registered with a different userId');
+          setModalMessage('This Chiller is already registered with a different userId');
+          setIsModalOpen(true);
           return; // Exit the function to prevent submission
         }
 
@@ -86,7 +92,8 @@ function RegisterChiller() {
 
           if (response.ok) {
             // Data was successfully updated
-            window.alert('Chiller data updated successfully');
+            setModalMessage('Chiller data updated successfully');
+            setIsModalOpen(true);
           } else {
             // Handle the error and log the response content
             console.error('Failed to update chiller data', response.status, await response.text());
@@ -96,7 +103,8 @@ function RegisterChiller() {
           console.error('An error occurred:', error);
         }
       } else {
-        window.alert('Chiller ID not found in the spreadsheet');
+        setModalMessage('Chiller ID not found in the spreadsheet');
+        setIsModalOpen(true);
       }
 
       // Optionally, you can clear the input fields after a successful update or when chiller ID is not found
@@ -108,6 +116,9 @@ function RegisterChiller() {
     }
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
 
   return (
     <div className="header">
@@ -144,6 +155,8 @@ function RegisterChiller() {
           </form>
         </div>
       </div>
+      {/* Render the custom modal */}
+      <ModalPopUp isOpen={isModalOpen} onClose={closeModal} message={modalMessage} />
     </div>
   );
 }
