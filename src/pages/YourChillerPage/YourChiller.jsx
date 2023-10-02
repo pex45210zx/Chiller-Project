@@ -6,6 +6,7 @@ import { getProfileData } from '../../components/localStorageUtils';
 import liff from '@line/liff';
 import Header from '../../components/Header.jsx';
 import { fetchChillerData } from '../../components/googleSheetsApi';
+import ModalPopUp from '../../components/modalPopUp';
 
 function YourChiller() {
   const [click, setClick] = useState(false);
@@ -16,25 +17,56 @@ function YourChiller() {
   const { profilePicture, displayName } = getProfileData();
   const [chillerHighTemp, setHighTemp] = useState('');
   const [chillerLowTemp, setLowTemp] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [isHighTempFilled, setIsHighTempFilled] = useState(false);
+  const [isLowTempFilled, setIsLowTempFilled] = useState(false);
+  const [modeSelected, setModeSelected] = useState(false);
+  const [chillerSelected, setChillerSelected] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal
+
+
+
 
   const handleClick = () => {
     setClick(!click);
   };
 
   const handleChillerHighTemp = (e) => {
-    setHighTemp(e.target.value);
+    const value = parseInt(e.target.value, 10); // Parse input as an integer
+    if (!isNaN(value) && value >= 20 && value <= 35) {
+      setHighTemp(value);
+      setIsHighTempFilled(true);
+    } else {
+      setHighTemp('');
+      setIsHighTempFilled(false);
+    }
   };
 
   const handleChillerLowTemp = (e) => {
-    setLowTemp(e.target.value);
+    const value = parseInt(e.target.value, 10); // Parse input as an integer
+    if (!isNaN(value) && value >= 20 && value <= 35) {
+      setLowTemp(value);
+      setIsLowTempFilled(true);
+    } else {
+      setLowTemp('');
+      setIsLowTempFilled(false);
+    }
   };
+
 
   const handleLogout = () => {
     liff.logout();
     navigate('/');
     console.log('clicked logout');
   };
+
+  useEffect(() => {
+    setChillerSelected(!!selectedChiller); // Set chillerSelected to true if selectedChiller is not empty
+  }, [selectedChiller]);
+
+  useEffect(() => {
+    setModeSelected(!!selectedMode); // Set modeSelected to true if selectedMode is not empty
+  }, [selectedMode]);
 
   useEffect(() => {
     async function fetchData() {
@@ -87,15 +119,28 @@ function YourChiller() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if the selected mode is 'Customize' and validate temperature inputs
-    if (selectedMode === 'Customize' && (!chillerHighTemp || !chillerLowTemp)) {
-      setErrorMessage('Please enter both high and low temperatures.');
+    if (!chillerSelected) {
+      setModalMessage('Please select a chiller.'); // Show an error message for chiller selection
+      setIsModalOpen(true);
+      return;
+    }
+
+    if (!modeSelected) {
+      setModalMessage('Please select a chiller mode.'); // Show an error message
+      setIsModalOpen(true);
+      return;
+    }
+
+    if (!isHighTempFilled || !isLowTempFilled) {
+      setModalMessage('Please enter both high and low temperatures.');
+      setIsModalOpen(true);
       return;
     }
 
     // Add a check to ensure high temperature is not less than low temperature
     if (parseInt(chillerHighTemp) < parseInt(chillerLowTemp)) {
-      setErrorMessage('High temperature must be greater than low temperature.');
+      setModalMessage('High temperature must be greater than low temperature.');
+      setIsModalOpen(true);
       return;
     }
 
@@ -107,7 +152,8 @@ function YourChiller() {
     );
 
     if (!selectedChillerObj) {
-      setErrorMessage('Chiller not found for the selected user.');
+      setModalMessage('Chiller not found for the selected user.');
+      setIsModalOpen(true);
       return;
     }
 
@@ -132,17 +178,21 @@ function YourChiller() {
 
       if (response.ok) {
         console.log('Chiller data updated successfully');
-        setErrorMessage('Chiller data updated successfully.');
+        setModalMessage('Chiller data updated successfully.');
+        setIsModalOpen(true);
       } else {
         console.error('Failed to update chiller data', response.status, await response.text());
-        setErrorMessage('Failed to update chiller data.');
+        setModalMessage('Failed to update chiller data.');
+        setIsModalOpen(true);
       }
     } catch (error) {
       console.error('An error occurred:', error);
-      setErrorMessage('An error occurred while updating chiller data.');
     }
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false); // Close the modal
+  };
 
   return (
     <div className="header">
@@ -155,51 +205,62 @@ function YourChiller() {
       />
       <div className="bodyChiller">
         <div className="body-con">
-          <h1>Your Chiller Page</h1>
+          <div className="yourChiller-title">Your Chiller Page</div>
           <div className="chiller-dropdown">
             <label htmlFor="chiller-select">Select your chiller:</label>
-            <select id="chiller-select" value={selectedChiller} onChange={handleChillerChange}>
-              <option value="">Select a chiller</option>
-              {chillerOptions.map((chiller) => (
-                <option key={chiller.id} value={chiller.chillerName}>
-                  {chiller.chillerName}
-                </option>
-              ))}
-            </select>
+            <div className="selection-area">
+              <select id="chiller-select" value={selectedChiller} onChange={handleChillerChange}>
+                <option value="">Select a chiller</option>
+                {chillerOptions.map((chiller) => (
+                  <option key={chiller.id} value={chiller.chillerName}>
+                    {chiller.chillerName}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
           <div className="mode-dropdown">
             <label htmlFor="mode-select">Select chiller mode:</label>
-            <select id="mode-select" value={selectedMode} onChange={handleModeChange}>
-              <option value="">Select chiller mode</option>
-              {modeOptions.map((mode) => (
-                <option key={mode} value={mode}>
-                  {mode}
-                </option>
-              ))}
-            </select>
+            <div className="selection-area">
+              <select id="mode-select" value={selectedMode} onChange={handleModeChange}>
+                <option value="">Select chiller mode</option>
+                {modeOptions.map((mode) => (
+                  <option key={mode} value={mode}>
+                    {mode}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <input
-                type="text"
+                className='textfield'
+                type="number" // Set the input type to number
                 placeholder="Set high temperature"
                 value={chillerHighTemp}
                 onChange={handleChillerHighTemp}
+                min="20" // Set the minimum value
+                max="35" // Set the maximum value
               />
             </div>
             <div className="form-group">
               <input
-                type="text"
+                className='textfield'
+                type="number" // Set the input type to number
                 placeholder="Set low temperature"
                 value={chillerLowTemp}
                 onChange={handleChillerLowTemp}
+                min="20" // Set the minimum value
+                max="35" // Set the maximum value
               />
             </div>
-            <button type="submit">Submit Setting</button>
+            <button className='button-submit' type="submit">Submit Setting</button>
           </form>
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
         </div>
       </div>
+      {/* Render the custom modal */}
+      <ModalPopUp isOpen={isModalOpen} onClose={closeModal} message={modalMessage} />
     </div>
   );
 }

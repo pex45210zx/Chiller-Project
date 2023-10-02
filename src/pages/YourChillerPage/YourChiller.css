@@ -1,7 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap');
+
+
 .bodyChiller {
     padding-left: 15%;
+    background: linear-gradient(180deg, #71E5FF 0%, #0053A0 100%);
+    margin-top: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Signika Negative', sans-serif;
 }
 
 .body-con {
+    margin: 30px 50% 0 5%;
+}
+
+.yourChiller-title {
+    color: #FFF;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.mode-select {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-bottom: 25px;
+    padding-top: 50px;
+    color: #000;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/* Styling the select element */
+.mode-dropdown select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #EFEFEF;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.mode-dropdown select:hover {
+    background-color: #e0e0e0;
+}
+
+/* Styling the label */
+.mode-dropdown label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.mode-dropdown label a {
+    margin-right: 0px;
+}
+
+/* Styling the dropdown container */
+.mode-dropdown {
+    margin-bottom: 20px;
+    margin-right: 65%;
+}
+
+/* Styling the dropdown arrow */
+.mode-dropdown::after {
+    content: '\25BC';
+    /* Unicode arrow down character */
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Styling the options */
+.mode-dropdown select option {
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: 16px;
+    padding-bottom: 4px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.selection-area {
+    margin-top: 10px;
+    border-radius: 15px;
+    padding: 2px;
+    border: 2px solid #323232;
+    background: #EFEFEF;
+    font-size: 16px;
+    padding-bottom: 4px;
+    color: #000;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.textfield {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    border-radius: 15px;
+    padding: 10px;
+    border: 2px solid #323232;
+    background: #EFEFEF;
+    font-size: 16px;
+    color: #000;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin-left: 0px;
+}
+
+.button-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    width: 200px;
+    height: 45px;
+    background-color: #323232;
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 100px;
+    transition: background-color .3s;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.form-group {
+    margin-left: 0px;
+}
+
+@media screen and (max-width: 1330px) {
+    .bodyHome {
+        padding-left: 0%;
+    }
+
+    .body-con {
+        margin: 30px 20px 0 10px;
     
+    }
+    .chiller-dropdown {
+        margin-bottom: 20px;
+        margin-right: 50%;
+    }
+
+    .yourChiller-title {
+        font-size: 40px;
+    }
+
+    .selection-area {
+        margin-right: 100px;
+        width: 200px;
+    }
+
+    .chiller-dropdown label {
+        font-size: 15px;
+    }
+
+    .mode-dropdown label {
+        font-size: 15px;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+    .bodyHome {
+        padding-left: 0%;
+    }
+
+    .body-con {
+        margin: 30px 15px 10px;
+    
+    }
+    .chiller-dropdown {
+        margin-bottom: 20px;
+        margin-right: 50%;
+    }
+
+    .yourChiller-title {
+        font-size: 36px;
+    }
+
+    .selection-area {
+        margin-right: -100px;
+        width: 200px;
+    }
+
+    .chiller-dropdown label {
+        font-size: 15px;
+    }
+
+    .mode-dropdown label {
+        font-size: 15px;
+    }
 }
