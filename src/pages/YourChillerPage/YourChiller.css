@@ -111,6 +111,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 170px;
     margin-top: 10px;
     border-radius: 15px;
     padding: 10px;

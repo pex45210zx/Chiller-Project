@@ -32,7 +32,7 @@ function YourChiller() {
   };
 
   const handleChillerHighTemp = (e) => {
-    const value = parseInt(e.target.value, 10); // Parse input as an integer
+    const value = parseFloat(e.target.value); // Parse input as a float
     if (!isNaN(value) && value >= 20 && value <= 35) {
       setHighTemp(value);
       setIsHighTempFilled(true);
@@ -43,7 +43,7 @@ function YourChiller() {
   };
 
   const handleChillerLowTemp = (e) => {
-    const value = parseInt(e.target.value, 10); // Parse input as an integer
+    const value = parseFloat(e.target.value); // Parse input as a float
     if (!isNaN(value) && value >= 20 && value <= 35) {
       setLowTemp(value);
       setIsLowTempFilled(true);
@@ -98,8 +98,16 @@ function YourChiller() {
         setLowTemp('28');
         break;
       case 'Marine fish':
-        // Set default values for other modes
-        // Add cases for other modes if needed
+        setHighTemp('28');
+        setLowTemp('27');
+        break;
+      case 'Coral Reef tank':
+        setHighTemp('26');
+        setLowTemp('25');
+        break;
+      case 'Aquatic plant':
+        setHighTemp('26');
+        setLowTemp('25');
         break;
       // Add cases for other modes if needed
       default:
@@ -238,8 +246,9 @@ function YourChiller() {
                 className='textfield'
                 type="number" // Set the input type to number
                 placeholder="Set high temperature"
-                value={chillerHighTemp}
+                value={chillerHighTemp.toString()} // Convert back to string to display the float value
                 onChange={handleChillerHighTemp}
+                step="0.1" // Allow floating-point values with up to 2 decimal places
                 min="20" // Set the minimum value
                 max="35" // Set the maximum value
               />
@@ -249,8 +258,9 @@ function YourChiller() {
                 className='textfield'
                 type="number" // Set the input type to number
                 placeholder="Set low temperature"
-                value={chillerLowTemp}
+                value={chillerLowTemp.toString()} // Convert back to string to display the float value
                 onChange={handleChillerLowTemp}
+                step="0.1" // Allow floating-point values with up to 2 decimal places
                 min="20" // Set the minimum value
                 max="35" // Set the maximum value
               />
