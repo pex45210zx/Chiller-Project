@@ -154,7 +154,7 @@ body {
     display: flex;
     padding: 10px;
     width: 200px;
-    background-color: red;
+    background-color: rgb(242, 61, 61);
     color: #fff;
     text-decoration: none;
     cursor: pointer;
@@ -167,7 +167,7 @@ body {
 }
 
 .logout-link:hover {
-    background-color: #d00;
+    background-color: rgb(208, 103, 103);
     /* Change this to your desired button background color on hover */
 }
 

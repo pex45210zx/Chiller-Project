@@ -240,30 +240,38 @@ function YourChiller() {
               </select>
             </div>
           </div>
+          <div className="description">Enter your high and low temp to control temperature
+            when temperature = high temp chiller will stop and when  temperature = low temp chiller will start work</div>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <input
-                className='textfield'
-                type="number" // Set the input type to number
-                placeholder="Set high temperature"
-                value={chillerHighTemp.toString()} // Convert back to string to display the float value
-                onChange={handleChillerHighTemp}
-                step="0.1" // Allow floating-point values with up to 2 decimal places
-                min="20" // Set the minimum value
-                max="35" // Set the maximum value
-              />
+              <div className="input-container">
+                <input
+                  className='textfield'
+                  type="number" // Set the input type to number
+                  placeholder="Set high temperature"
+                  value={chillerHighTemp.toString()} // Convert back to string to display the float value
+                  onChange={handleChillerHighTemp}
+                  step="0.1" // Allow floating-point values with up to 2 decimal places
+                  min="20" // Set the minimum value
+                  max="35" // Set the maximum value
+                />
+                <div className="side-text">High temp</div>
+              </div>
             </div>
             <div className="form-group">
-              <input
-                className='textfield'
-                type="number" // Set the input type to number
-                placeholder="Set low temperature"
-                value={chillerLowTemp.toString()} // Convert back to string to display the float value
-                onChange={handleChillerLowTemp}
-                step="0.1" // Allow floating-point values with up to 2 decimal places
-                min="20" // Set the minimum value
-                max="35" // Set the maximum value
-              />
+              <div className="input-container">
+                <input
+                  className='textfield'
+                  type="number" // Set the input type to number
+                  placeholder="Set low temperature"
+                  value={chillerLowTemp.toString()} // Convert back to string to display the float value
+                  onChange={handleChillerLowTemp}
+                  step="0.1" // Allow floating-point values with up to 2 decimal places
+                  min="20" // Set the minimum value
+                  max="35" // Set the maximum value
+                />
+                <div className="side-text">Low temp</div>
+              </div>
             </div>
             <button className='button-submit' type="submit">Submit Setting</button>
           </form>

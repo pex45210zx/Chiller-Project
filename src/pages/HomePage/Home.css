@@ -123,9 +123,41 @@
     border-radius: 10px;
     padding: 15px;
     background: linear-gradient(180deg, #C0F4FF 0%, rgba(0, 146, 178, 0.00) 100%);
+    width: 400px;
 }
 
+.description {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFF;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 80%;
+}
 
+.topic-status {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFF;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 80%;
+}
+
+.status-output {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFF;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 80%;
+}
 @media screen and (max-width: 1330px) {
     .bodyHome {
         padding-left: 0%;

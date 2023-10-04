@@ -77,6 +77,7 @@ function Home() {
           <div className="homepage-title">
             Homepage
           </div>
+          <div className="description">Please select your chiller to monitor its status</div>
           <div className="chiller-dropdown">
             <label className="chiller-select">Select your chiller</label>
             <div className="selection-area">
@@ -95,10 +96,17 @@ function Home() {
                 <div className="chiller-name">
                   {chiller.chillerName}
                 </div>
-                <p><strong>Chiller Mode:</strong> {chiller.chillerMode}</p>
-                <p><strong>Current Temperature:</strong> {chiller.currentTemp}</p>
-                <p><strong>High Temperature:</strong> {chiller.highTemp}</p>
-                <p><strong>Low Temperature:</strong> {chiller.lowTemp}</p>
+                <p><strong className='topic-status'>Chiller Mode:</strong>
+                  <div className="status-output">
+                    {chiller.chillerMode}
+                  </div>
+                </p>
+                <p><strong className='topic-status'>Current Temperature:</strong>
+                <div className="status-output">{chiller.currentTemp}</div></p>
+                <p><strong className='topic-status'>High Temperature:</strong> 
+                <div className="status-output">{chiller.highTemp}</div></p>
+                <p><strong className='topic-status'>Low Temperature:</strong>
+                <div className="status-output">{chiller.lowTemp}</div></p>
               </div>
             ))}
           </div>

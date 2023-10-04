@@ -130,7 +130,7 @@
     align-items: center;
     justify-content: center;
     padding: 5px;
-    width: 200px;
+    width: 180px;
     height: 45px;
     background-color: #323232;
     color: #fff;
@@ -144,8 +144,42 @@
     margin-top: 10px;
 }
 
+.button-submit:hover {
+    background-color: #646569;
+    /* Change this to your desired button background color on hover */
+}
+
 .form-group {
     margin-left: 0px;
+}
+
+.description {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #FFF;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 80%;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    /* Adjust the margin as needed */
+}
+
+.side-text {
+    width: 450px;
+    text-align: left;
+    margin-left: 10px;
+    padding-top: 8px;
+    color: #fff;
+    font-weight: 500;
+    font-size: 20px;
 }
 
 @media screen and (max-width: 1330px) {
@@ -155,8 +189,9 @@
 
     .body-con {
         margin: 30px 20px 0 10px;
-    
+
     }
+
     .chiller-dropdown {
         margin-bottom: 20px;
         margin-right: 50%;
@@ -178,6 +213,17 @@
     .mode-dropdown label {
         font-size: 15px;
     }
+
+    .input-container {
+        justify-content: flex-start;
+        /* Align items to the left */
+    }
+
+    /* Adjust the side-text margin to control the spacing */
+    .side-text {
+        margin-left: 10px;
+        /* Increase or decrease margin as needed */
+    }
 }
 
 
@@ -188,8 +234,9 @@
 
     .body-con {
         margin: 30px 15px 10px;
-    
+
     }
+
     .chiller-dropdown {
         margin-bottom: 20px;
         margin-right: 50%;
@@ -210,5 +257,20 @@
 
     .mode-dropdown label {
         font-size: 15px;
+    }
+
+    .input-container {
+        justify-content: flex-start;
+        /* Align items to the left */
+    }
+
+    .textfield {
+        width: 550px;
+    }
+
+    /* Adjust the side-text margin to control the spacing */
+    .side-text {
+        margin-left: 10px;
+        /* Increase or decrease margin as needed */
     }
 }

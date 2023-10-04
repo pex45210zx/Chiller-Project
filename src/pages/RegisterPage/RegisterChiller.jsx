@@ -103,7 +103,7 @@ function RegisterChiller() {
           console.error('An error occurred:', error);
         }
       } else {
-        setModalMessage('Chiller ID not found in the spreadsheet');
+        setModalMessage('Wrond chiller ID');
         setIsModalOpen(true);
       }
 
@@ -132,6 +132,7 @@ function RegisterChiller() {
       <div className="bodyregisterCL">
         <div className="body-con">
           <div className='register-title'>Registration Your Chiller</div>
+          <div className="description">Please enter your chiller ID and create name of it to add it to Your Chiller in menu</div>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <input
