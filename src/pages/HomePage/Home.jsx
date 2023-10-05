@@ -91,25 +91,52 @@ function Home() {
             </div>
           </div>
           <div className="chiller-details">
-            {chillerOptions.map((chiller) => (
-              <div key={chiller.id} style={{ display: chiller.chillerName === selectedChiller ? 'block' : 'none' }}>
-                <div className="chiller-name">
-                  {chiller.chillerName}
-                </div>
-                <p><strong className='topic-status'>Chiller Mode:</strong>
-                  <div className="status-output">
-                    {chiller.chillerMode}
+            <div className="chiller-con">
+              {chillerOptions.map((chiller) => (
+                <div key={chiller.id} style={{ display: chiller.chillerName === selectedChiller ? 'block' : 'none', width: '100%' }}>
+                  <div className="details-con">
+                    <div className="chiller-name-con">
+                      <div className="chiller-n">
+                        Details from :
+                      </div>
+                      <div className="chiller-name">{chiller.chillerName}</div>
+                    </div>
+                    <div className="temperature-container">
+                      <div className="temperature-column">
+                        <p>
+                          <strong className='status-current'>Current Temperature</strong>
+                          {chiller.currentTemp ? (
+                            <div className="current-output">{chiller.currentTemp}°</div>
+                          ) : (
+                            <div className="current-output"></div>
+                          )}
+                        </p>
+                      </div>
+                      <div className="temperature-column">
+                        <p>
+                          <strong className='topic-status'>High Temperature</strong>
+                          {chiller.highTemp ? (
+                            <div className="status-output">{chiller.highTemp}°</div>
+                          ) : (
+                            <div className="status-output"></div>
+                          )}
+                        </p>
+                        <p>
+                          <strong className='topic-status'>Low Temperature</strong>
+                          {chiller.lowTemp ? (
+                            <div className="status-output">{chiller.lowTemp}°</div>
+                          ) : (
+                            <div className="status-output"></div>
+                          )}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </p>
-                <p><strong className='topic-status'>Current Temperature:</strong>
-                <div className="status-output">{chiller.currentTemp}</div></p>
-                <p><strong className='topic-status'>High Temperature:</strong> 
-                <div className="status-output">{chiller.highTemp}</div></p>
-                <p><strong className='topic-status'>Low Temperature:</strong>
-                <div className="status-output">{chiller.lowTemp}</div></p>
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
           </div>
+
         </div>
       </div>
     </div>

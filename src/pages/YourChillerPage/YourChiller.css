@@ -183,7 +183,7 @@
 }
 
 @media screen and (max-width: 1330px) {
-    .bodyHome {
+    .bodyChiller {
         padding-left: 0%;
     }
 
@@ -228,7 +228,7 @@
 
 
 @media screen and (max-width: 480px) {
-    .bodyHome {
+    .bodyChiller {
         padding-left: 0%;
     }
 

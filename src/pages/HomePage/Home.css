@@ -110,29 +110,84 @@
     line-height: normal;
 }
 
-.chiller-name {
+.chiller-con {
+    display: flex;
+    display: flex;
+    width: auto;
+    height: auto;
+}
+
+.details-con {
+    width: 100%;
+    height: 100%;
+}
+.chiller-name-con {
+    display: flex;
+    height: 35px;
+}
+
+.chiller-n {
     color: #111;
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-shadow: 0px 4px 4px rgba(0,0,0,.25);
     font-size: 36px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    width: 60%;
+}
+
+.chiller-name {
+    color: #fff;
+    text-shadow: 0px 4px 4px rgba(0,0,0,.25);
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 80%;
+    margin-top: -3px;
 }
 
 .chiller-details {
     border-radius: 10px;
     padding: 15px;
     background: linear-gradient(180deg, #C0F4FF 0%, rgba(0, 146, 178, 0.00) 100%);
-    width: 400px;
+    width: 500px;
 }
 
-.description {
+/* Add these styles to your Home.css file */
+.temperature-container {
+    display: flex;
+    justify-content: space-between;
+    /* Separate high and low temperature columns */
+    align-items: center;
+    width: 100%;
+}
+
+.temperature-column {
+    flex: 1;
+    margin-top: 10px;
+    /* Equal width for high and low temperature columns */
+}
+
+.status-current {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #333;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    width: 80%;
+}
+
+.current-output {
     padding-top: 10px;
     padding-bottom: 10px;
     color: #FFF;
-    font-size: 13px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 80px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 800;
     line-height: normal;
     width: 80%;
 }
@@ -140,10 +195,10 @@
 .topic-status {
     padding-top: 10px;
     padding-bottom: 10px;
-    color: #FFF;
-    font-size: 13px;
+    color: #333;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: normal;
     width: 80%;
 }
@@ -152,12 +207,14 @@
     padding-top: 10px;
     padding-bottom: 10px;
     color: #FFF;
-    font-size: 13px;
+    font-size: 30px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 800;
     line-height: normal;
     width: 80%;
 }
+
+
 @media screen and (max-width: 1330px) {
     .bodyHome {
         padding-left: 0%;
@@ -165,11 +222,21 @@
 
     .body-con {
         margin: 30px 20% 0 5%;
-    
+
     }
+
+    .chiller-name-con {
+        display: contents;
+        width: 90%;
+    }
+
     .chiller-dropdown {
         margin-bottom: 20px;
         margin-right: 50%;
+    }
+
+    .chiller-details {
+        width: 420px;
     }
 }
 
@@ -181,10 +248,20 @@
 
     .body-con {
         margin: 30px 15px 10px;
-    
+
     }
+
     .chiller-dropdown {
         margin-bottom: 20px;
         margin-right: 50%;
     }
+
+    .chiller-details {
+        width: 90%;
+    }
+
+    .chiller-n {
+        width: 90%;
+    }
+    
 }

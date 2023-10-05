@@ -130,7 +130,7 @@ function Delete() {
       // After displaying the success message, navigate to /home
       setTimeout(() => {
         setIsModalOpen(false); // Close the modal
-        navigate('/delete'); // Navigate to /home
+        navigate('/home'); // Navigate to /home
       }, 2000); // Delay for 2 seconds (adjust the delay as needed)
     } catch (error) {
       console.error('An error occurred:', error);

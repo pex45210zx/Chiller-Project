@@ -78,6 +78,10 @@
 
 
 @media screen and (max-width: 1120px) {
+
+    .bodyregisterCL {
+        padding-left: 0%;
+    }
     
     .register-title {
         font-size: 28px;
@@ -91,6 +95,10 @@
 }
 
 @media screen and (max-width: 480px) {
+    
+    .bodyregisterCL {
+        padding-left: 0%;
+    }
     
     .register-title {
         font-size: 28px;
