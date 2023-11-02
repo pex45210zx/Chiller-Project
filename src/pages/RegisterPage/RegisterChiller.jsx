@@ -132,8 +132,10 @@ function RegisterChiller() {
       <div className="bodyregisterCL">
         <div className="body-con">
           <div className='register-title'>Registration Your Chiller</div>
-          <div className="description">Please enter your chiller ID and create name of it to add it to Your Chiller in menu</div>
-          <form onSubmit={handleSubmit}>
+          <div className="des-area">
+            <div className="description">Please enter your chiller ID and create name of it to add it to Your Chiller in menu</div>
+          </div>
+          <form className='form-input' onSubmit={handleSubmit}>
             <div className="form-group">
               <input
                 className='textfield'

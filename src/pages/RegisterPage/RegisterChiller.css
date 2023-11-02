@@ -24,6 +24,17 @@
     line-height: normal;
 }
 
+.description {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #fff;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 80%;
+}
+
 .textfield {
     display: flex;
     align-items: center;
@@ -82,31 +93,76 @@
     .bodyregisterCL {
         padding-left: 0%;
     }
-    
+
     .register-title {
         font-size: 28px;
     }
-   
-   
+
+
     .textfield {
         margin-left: 36px;
     }
-    
+
 }
 
 @media screen and (max-width: 480px) {
-    
+
     .bodyregisterCL {
         padding-left: 0%;
     }
-    
+
     .register-title {
         font-size: 28px;
     }
-   
-   
+
+    .form-input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Center items horizontally */
+        justify-content: center;
+        /* Center items vertically */
+        min-height: 1vh;
+        /* Ensure it takes up the full viewport height */
+    }
+
+    .register-title {
+        text-align: center;
+        /* Center the text horizontally */
+        margin: 10px 0;
+        /* Add some space around the title */
+    }
+
+    .des-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Center items horizontally */
+        justify-content: center;
+        /* Center items vertically */
+        min-height: 0vh;
+        /* Ensure it takes up the full viewport height */
+        text-align: center;
+        /* Center the text horizontally */
+        margin: 10px 0;
+        /* Add some space around the description */
+    }
+
+    .description {
+        text-align: center;
+        /* Center the text horizontally */
+        margin: 10px 0;
+        /* Add some space around the description */
+        width: 100%;
+    }
+
     .textfield {
         margin-left: 16px;
     }
-    
+
+    .button-register {
+        margin: 30px 0 0 0px;
+        
+    }
+
 }

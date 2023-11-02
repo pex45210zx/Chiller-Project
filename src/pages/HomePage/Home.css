@@ -25,7 +25,7 @@
     line-height: normal;
 }
 
-.description {
+.description-home {
     padding-top: 10px;
     padding-bottom: 10px;
     color: #fff;
@@ -75,9 +75,9 @@
     margin-bottom: 10px;
 }
 
-.chiller-dropdown label a {
+/* .chiller-dropdown label a {
     margin-right: 0px;
-}
+} */
 
 /* Styling the dropdown container */
 .chiller-dropdown {
@@ -87,8 +87,6 @@
 
 /* Styling the dropdown arrow */
 .chiller-dropdown::after {
-    content: '\25BC';
-    /* Unicode arrow down character */
     position: absolute;
     top: 50%;
     right: 10px;
@@ -133,13 +131,14 @@
     height: 100%;
     text-align: center;
 }
+
 .chiller-name-con {
     display: flex;
 }
 
 .chiller-name {
     color: #fff;
-    text-shadow: 0px 4px 4px rgba(0,0,0,.25);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, .25);
     font-size: 50px;
     font-style: normal;
     font-weight: 700;
@@ -187,7 +186,7 @@
     padding-top: 10px;
     padding-bottom: 10px;
     color: #fffdfd;
-    text-shadow: 0px 4px 4px rgba(0,0,0,.25);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, .25);
     font-size: 85px;
     font-style: normal;
     font-weight: 800;
@@ -298,7 +297,7 @@
         margin: 0 10% 5%;
         justify-content: space-between;
     }
-    
+
 }
 
 
@@ -307,15 +306,7 @@
         text-align: center;
     }
 
-    .description {
-        width: 100%;
-    }
-
-    .chiller-dropdown {
-        margin: auto;
-    }
-
-    .selection-area {
+    .description-home {
         width: 100%;
     }
 
@@ -330,7 +321,7 @@
     }
 
     .chiller-name {
-        font-size: 30px; 
+        font-size: 30px;
     }
 
     .temperature-container {
@@ -351,7 +342,7 @@
         text-align: center;
         margin: 0px 10% 5% 10%;
         justify-content: space-between;
-    }    
+    }
 
     .topic-status {
         color: #333;
@@ -360,7 +351,7 @@
         font-weight: 700;
         line-height: normal;
     }
-    
+
     .status-output {
         color: #fff;
         font-size: 30px;
