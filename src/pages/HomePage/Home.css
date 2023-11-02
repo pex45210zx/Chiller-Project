@@ -297,17 +297,30 @@
     }
 
     .body-con {
-        margin: 30px 15px 10px;
+        text-align: center;
 
+    }
+
+    .description {
+        width: 100%;
     }
 
     .chiller-dropdown {
-        margin-bottom: 20px;
-        margin-right: 50%;
+        margin: auto;
+    }
+
+    .chiller-dropdown label {
+        font-size: 15px;
+    }
+    
+    .selection-area {
+        margin: auto;
+        margin-bottom: 10px;
+        margin-top: 5px;
     }
 
     .chiller-details {
-        width: 90%;
+        width: 94%;
     }
 
     .chiller-name-con {
