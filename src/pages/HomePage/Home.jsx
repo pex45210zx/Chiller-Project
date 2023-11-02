@@ -77,7 +77,7 @@ function Home() {
           <div className="homepage-title">
             Homepage
           </div>
-          <div className="description">Please select your chiller to monitor its status</div>
+          <div className="description">Please select your chiller to monitor its status</div>          
           <div className="chiller-dropdown">
             <label className="chiller-select">Select your chiller</label>
             <div className="selection-area">

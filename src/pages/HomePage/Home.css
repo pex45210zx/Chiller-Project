@@ -25,6 +25,17 @@
     line-height: normal;
 }
 
+.description {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #fff;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+}
+
 /* Add these styles to your Home.css file */
 .chiller-select {
     font-size: 1.5rem;
@@ -293,12 +304,7 @@
 
 @media screen and (max-width: 480px) {
     .bodyHome {
-        padding-left: 0%;
-    }
-
-    .body-con {
         text-align: center;
-
     }
 
     .description {
@@ -309,18 +315,13 @@
         margin: auto;
     }
 
-    .chiller-dropdown label {
-        font-size: 15px;
-    }
-    
     .selection-area {
-        margin: auto;
-        margin-bottom: 10px;
-        margin-top: 5px;
+        width: 100%;
     }
 
     .chiller-details {
-        width: 94%;
+        width: 93%;
+        margin-top: 10px;
     }
 
     .chiller-name-con {
