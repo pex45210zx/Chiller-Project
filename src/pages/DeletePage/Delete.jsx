@@ -156,11 +156,16 @@ function Delete() {
         handleLogout={handleLogout}
       />
       <div className="bodydelete">
-        <div className="body-con">
+        <div className="body-con-de">
           <div className='delete-title'>Delete page</div>
-          <div className="description"> <div className="emoji"><FaExclamationTriangle className="exclamation-icon" /></div>Please be aware this step will delete your chiller,
-            if you delete it, all previously saved settings and temperature data of it  will be deleted.</div>
-          <div className="chiller-dropdown">
+          <div className="des-area">
+            <div className="description-de">
+              <div className="emoji"><FaExclamationTriangle className="exclamation-icon" />
+              </div>Please be aware this step will delete your chiller,
+              if you delete it, all previously saved settings and temperature data of it  will be deleted.
+            </div>
+          </div>
+          <div className="chiller-dropdown-de">
             <label htmlFor="chiller-select">Select your chiller:</label>
             <div className="selection-area">
               <select id="chiller-select" value={selectedChiller} onChange={handleChillerChange}>
@@ -173,7 +178,7 @@ function Delete() {
               </select>
             </div>
           </div>
-          <form onSubmit={handleDelete}>
+          <form className='form-input' onSubmit={handleDelete}>
             <div className="form-group">
               <input
                 className='textfield'

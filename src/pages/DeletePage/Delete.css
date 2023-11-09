@@ -11,7 +11,7 @@
     font-family: 'Signika Negative', sans-serif;
 }
 
-.body-con {
+.body-con-de {
     margin: 30px 50% 0 5%;
 
 }
@@ -25,11 +25,32 @@
     line-height: normal;
 }
 
-.chiller-dropdown label {
+.chiller-dropdown-de {
+    margin-bottom: 20px;
+}
+
+.chiller-dropdown-de label {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: bold;
     color: #333;
     margin-bottom: 10px;
+}
+
+.chiller-dropdown-de select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #EFEFEF;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.chiller-dropdown-de select:hover {
+    background-color: #e0e0e0;
 }
 
 .emoji {
@@ -62,7 +83,7 @@
     margin-left: 0px;
 }
 
-.description {
+.description-de {
     padding-top: 10px;
     padding-bottom: 10px;
     color: #FFF;
@@ -85,6 +106,7 @@
     font-style: normal;
     font-weight: 300;
     line-height: normal;
+    width: 400px;
 }
 
 .button-delete {
@@ -116,12 +138,12 @@
         padding-left: 0%;
     }
 
-    .body-con {
+    .body-con-de {
         margin: 30px 20px 0 10px;
 
     }
 
-    .chiller-dropdown {
+    .chiller-dropdown-de {
         margin-bottom: 20px;
         margin-right: 50%;
     }
@@ -135,12 +157,12 @@
         width: 200px;
     }
 
-    .chiller-dropdown label {
+    .chiller-dropdown-de label {
         font-size: 15px;
         width: 200px;
     }
 
-    .description {
+    .description-de {
         width: 50%;
     }
 
@@ -152,35 +174,63 @@
         padding-left: 0%;
     }
 
-    .body-con {
-        margin: 30px 15px 10px;
-
+    .body-con-de {
+        text-align: center;
+        width: 100%;
+        margin: auto;
+        margin-top: 10px;
     }
 
-    .chiller-dropdown {
-        margin-bottom: 20px;
-        margin-right: 50%;
+    .chiller-dropdown-de {
+        text-align: center;
+        margin-right: auto;
+        width: 100%;
     }
 
     .delete-title {
-        font-size: 36px;
+        font-size: 40px;
+        margin-top: 10px;
     }
 
     .selection-area {
-        margin-right: -100px;
-        width: 200px;
+        margin: auto;
+        margin-top: 10px;
+        width: 230px;
     }
 
-    .chiller-dropdown label {
+    .chiller-dropdown-de label {
         font-size: 15px;
         width: 140%;
     }
+    
+    .des-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Center items horizontally */
+        justify-content: center;
+        /* Center items vertically */
+        min-height: 0vh;
+        /* Ensure it takes up the full viewport height */
+        text-align: center;
+        /* Center the text horizontally */
+        margin: 10px 0;
+        /* Add some space around the description */
+    }
 
-    .description {
+    .description-de {
         width: 90%;
     }
 
     .textfield {
         width: 206px;
+    }
+
+    .form-input {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 1vh;
     }
 }

@@ -49,7 +49,17 @@
 
 }
 
-/* Styling the select element */
+.chiller-dropdown {
+    margin-bottom: 20px;
+}
+
+.chiller-dropdown label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
 .chiller-dropdown select {
     width: 100%;
     padding: 10px;
@@ -65,44 +75,6 @@
 
 .chiller-dropdown select:hover {
     background-color: #e0e0e0;
-}
-
-/* Styling the label */
-.chiller-dropdown label {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-/* .chiller-dropdown label a {
-    margin-right: 0px;
-} */
-
-/* Styling the dropdown container */
-.chiller-dropdown {
-    margin-bottom: 20px;
-    margin-right: 65%;
-}
-
-/* Styling the dropdown arrow */
-.chiller-dropdown::after {
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
-
-/* Styling the options */
-.chiller-dropdown select option {
-    background-color: #f2f2f2;
-    color: #333;
-    font-size: 16px;
-    padding-bottom: 4px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
 }
 
 .selection-area {
@@ -387,5 +359,16 @@
         display: block;
         width: 100%;
         margin-left: 0px;
+    }
+
+    .chiller-dropdown {
+        text-align: center;
+        margin-right: auto;
+        width: 100%;
+    }
+
+    .selection-area {
+        margin: 10px auto auto;
+        width: 230px;
     }
 }

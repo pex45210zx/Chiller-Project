@@ -214,9 +214,9 @@ function YourChiller() {
       <div className="bodyChiller">
         <div className="body-con">
           <div className="yourChiller-title">Your Chiller Page</div>
-          <div className="chiller-dropdown">
+          <div className="chiller-dropdown1">
             <label htmlFor="chiller-select">Select your chiller:</label>
-            <div className="selection-area">
+            <div className="selection-area-ch">
               <select id="chiller-select" value={selectedChiller} onChange={handleChillerChange}>
                 <option value="">Select a chiller</option>
                 {chillerOptions.map((chiller) => (
@@ -229,7 +229,7 @@ function YourChiller() {
           </div>
           <div className="mode-dropdown">
             <label htmlFor="mode-select">Select chiller mode:</label>
-            <div className="selection-area">
+            <div className="selection-area-ch">
               <select id="mode-select" value={selectedMode} onChange={handleModeChange}>
                 <option value="">Select chiller mode</option>
                 {modeOptions.map((mode) => (
@@ -240,7 +240,7 @@ function YourChiller() {
               </select>
             </div>
           </div>
-          <div className="description">Enter your high and low temp to control temperature
+          <div className="description-ch">Enter your high and low temp to control temperature
             when temperature = high temp chiller will stop and when  temperature = low temp chiller will start work</div>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
@@ -273,7 +273,9 @@ function YourChiller() {
                 <div className="side-text">Low temp</div>
               </div>
             </div>
-            <button className='button-submit' type="submit">Submit Setting</button>
+            <div className="button-area">
+              <button className='button-submit' type="submit">Submit Setting</button>
+            </div>
           </form>
         </div>
       </div>

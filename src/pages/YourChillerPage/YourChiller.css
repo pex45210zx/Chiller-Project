@@ -24,18 +24,34 @@
     line-height: normal;
 }
 
-.mode-select {
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding-bottom: 25px;
-    padding-top: 50px;
-    color: #000;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
+.chiller-dropdown1 {
+    margin-bottom: 20px;
 }
 
-/* Styling the select element */
+.chiller-dropdown1 label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.chiller-dropdown1 select {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #EFEFEF;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s;
+}
+
+.chiller-dropdown1 select:hover {
+    background-color: #e0e0e0;
+}
+
 .mode-dropdown select {
     width: 100%;
     padding: 10px;
@@ -53,7 +69,6 @@
     background-color: #e0e0e0;
 }
 
-/* Styling the label */
 .mode-dropdown label {
     font-size: 18px;
     font-weight: bold;
@@ -61,50 +76,18 @@
     margin-bottom: 10px;
 }
 
-.mode-dropdown label a {
-    margin-right: 0px;
-}
-
-/* Styling the dropdown container */
-.mode-dropdown {
-    margin-bottom: 20px;
-    margin-right: 65%;
-}
-
-/* Styling the dropdown arrow */
-.mode-dropdown::after {
-    content: '\25BC';
-    /* Unicode arrow down character */
-    position: absolute;
-    top: 50%;
-    right: 10px;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
-
-/* Styling the options */
-.mode-dropdown select option {
-    background-color: #f2f2f2;
-    color: #333;
-    font-size: 16px;
-    padding-bottom: 4px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: normal;
-}
-
-.selection-area {
+.selection-area-ch {
     margin-top: 10px;
     border-radius: 15px;
-    padding: 2px;
+    padding: 2px 2px 4px;
     border: 2px solid #323232;
     background: #EFEFEF;
     font-size: 16px;
-    padding-bottom: 4px;
     color: #000;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
+    width: 60%;
 }
 
 .textfield {
@@ -153,7 +136,7 @@
     margin-left: 0px;
 }
 
-.description {
+.description-ch {
     padding-top: 10px;
     padding-bottom: 10px;
     color: #FFF;
@@ -201,7 +184,7 @@
         font-size: 40px;
     }
 
-    .selection-area {
+    .selection-area-ch {
         margin-right: 100px;
         width: 200px;
     }
@@ -226,51 +209,76 @@
     }
 }
 
-
 @media screen and (max-width: 480px) {
     .bodyChiller {
-        padding-left: 0%;
+        padding-left: 0;
     }
 
     .body-con {
-        margin: 30px 15px 10px;
-
+        text-align: center;
     }
 
-    .chiller-dropdown {
-        margin-bottom: 20px;
-        margin-right: 50%;
+    .description-ch {
+        width: 100%;
     }
 
     .yourChiller-title {
         font-size: 36px;
     }
 
-    .selection-area {
-        margin-right: -100px;
-        width: 200px;
+    .chiller-dropdown1 {
+        text-align: center;
+        /* Center the text horizontally */
+        margin-right: auto;
+        /* Reset margin-right */
     }
 
-    .chiller-dropdown label {
-        font-size: 15px;
+    .mode-dropdown {
+        text-align: center;
+        /* Center the text horizontally */
+        margin-right: auto;
+        /* Reset margin-right */
     }
 
-    .mode-dropdown label {
-        font-size: 15px;
+    .selection-area-ch {
+        width: 300px;
+        margin: auto;
+        margin-top: 10px;
     }
 
     .input-container {
-        justify-content: flex-start;
-        /* Align items to the left */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Center items horizontally */
+        justify-content: center;
+        /* Center items vertically */
+        min-height: 0vh;
+        /* Ensure it takes up the full viewport height */
     }
 
     .textfield {
-        width: 550px;
+        width: 100%;
+        /* Adjust width as needed */
+        margin-left: 0;
     }
 
-    /* Adjust the side-text margin to control the spacing */
     .side-text {
-        margin-left: 10px;
-        /* Increase or decrease margin as needed */
+        width: 100%;
+        /* Adjust width as needed */
+        text-align: center;
+        /* Center the text horizontally */
+        margin-left: 0;
+        /* Reset margin */
     }
+
+    .button-area {
+        text-align: center;
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
 }
