@@ -48,6 +48,30 @@ function Home() {
     fetchData();
   }, []);
 
+  // Function to fetch updated chiller data and update temperature
+  const fetchUpdatedChillerData = async () => {
+    try {
+      const { userId } = getProfileData();
+      const updatedChillerData = await fetchChillerData();
+      
+      const filteredChillers = updatedChillerData.filter(chiller => chiller.userId === userId);
+      setChillerOptions(filteredChillers);
+
+      const chillerStillExists = filteredChillers.some(chiller => chiller.chillerName === selectedChiller);
+      if (!chillerStillExists && filteredChillers.length > 0) {
+        setSelectedChiller(filteredChillers[0].chillerName);
+      }
+    } catch (error) {
+      console.error('Error fetching updated chiller data:', error);
+    }
+  };
+
+  // Function to periodically fetch updated data (adjust the interval as needed)
+  useEffect(() => {
+    const interval = setInterval(fetchUpdatedChillerData, 500); // Fetch data every minute
+    return () => clearInterval(interval); // Clear interval on component unmount
+  }, [selectedChiller]); // Add selectedChiller to the dependencies to update when it changes
+
   const handleClick = () => {
     setClick(!click);
   };
