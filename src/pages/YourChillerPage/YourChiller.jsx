@@ -96,26 +96,36 @@ function YourChiller() {
       case 'Freshwater fish':
         setHighTemp('30');
         setLowTemp('28');
+        setIsHighTempFilled(true); // Update the flags
+        setIsLowTempFilled(true);
         break;
       case 'Marine fish':
         setHighTemp('28');
         setLowTemp('27');
+        setIsHighTempFilled(true); // Update the flags
+        setIsLowTempFilled(true);
         break;
       case 'Coral Reef tank':
         setHighTemp('26');
         setLowTemp('25');
+        setIsHighTempFilled(true); // Update the flags
+        setIsLowTempFilled(true);
         break;
       case 'Aquatic plant':
         setHighTemp('26');
         setLowTemp('25');
+        setIsHighTempFilled(true); // Update the flags
+        setIsLowTempFilled(true);
         break;
       // Add cases for other modes if needed
       default:
         setHighTemp('');
         setLowTemp('');
+        setIsHighTempFilled(false); // Update the flags
+        setIsLowTempFilled(false);
     }
   };
-
+  
   const modeOptions = [
     'Freshwater fish',
     'Marine fish',
