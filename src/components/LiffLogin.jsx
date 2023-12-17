@@ -1,13 +1,16 @@
+// LiffLogin.jsx
 import liff from '@line/liff';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { saveProfileData } from './localStorageUtils';
+import './LiffLogin.css'; // Ensure correct path to your CSS file
 
 function LiffLogin() {
     const [profilePicture, setProfilePicture] = useState('');
     const [userId, setUserId] = useState('');
     const [displayName, setDisplayName] = useState('');
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const loginWithLiff = async () => {
@@ -22,28 +25,33 @@ function LiffLogin() {
                     setUserId(profile.userId);
                     setDisplayName(profile.displayName);
 
-                    // Store profile data in local storage
                     saveProfileData(profile.pictureUrl, profile.displayName, profile.userId);
 
-                    // Redirect to the Home page after successful login
                     navigate('/home', { replace: true });
                 }
             } catch (error) {
                 console.log(error);
+            } finally {
+                setLoading(false);
             }
         };
 
         loginWithLiff();
     }, [navigate]);
 
-    // Render nothing while checking login status
     return (
-        <>
-            <div>
-                {/* You can display a loading message here */}
+        <div className={`modal ${loading ? 'modal--active' : ''}`}>
+            <div className="modal-content">
+                <div className="sea-animation">
+                    {/* Your aquatic-themed animation */}
+                    {/* You can modify or add elements for the sea animation */}
+                    <div className="bubble"></div>
+                    <div className="bubble"></div>
+                    <div className="bubble"></div>
+                </div>
                 <p>Loading...</p>
             </div>
-        </>
+        </div>
     );
 }
 
