@@ -109,7 +109,7 @@ function Delete() {
       const chillerIdToUpdate = selectedChillerObj.id;
       // Update data using the Sheety API with a PUT request
       const updateResponse = await fetch(
-        `https://api.sheety.co/45db5972a3949b178211813d91bb4c14/chillerRegister/data/${chillerIdToUpdate}`,
+        `https://api.sheety.co/313ba156926928db7871fc95577d36d9/projectChillerData/data/${chillerIdToUpdate}`,
         {
           method: 'PUT',
           headers: {
