@@ -1,78 +1,86 @@
 /* LiffLogin.css */
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap');
 
 /* Styling for the loading modal */
 .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    justify-content: center;
-    align-items: center;
+  background: linear-gradient(180deg, #71E5FF 0%, #0053A0 100%);
+  margin-top: auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Signika Negative', sans-serif;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Make the modal visible when loading is active */
+.modal--active {
+  display: flex;
+}
+
+/* Styling for the modal content */
+.modal-content1 {
+  display: block;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* Sea animation styling */
+.sea-animation {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  /* Adjust the width and height of the animation */
+  background-color: #88d8b0;
+  /* Color of the 'sea' */
+  border-radius: 50%;
+  /* Makes it circular */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: oceanWaves 1.5s linear infinite alternate;
+  /* Apply the animation */
+  margin: 0 auto;
+  /* Center the sea animation horizontally */
+}
+
+/* Keyframes for the sea wave animation */
+@keyframes oceanWaves {
+  0% {
+    transform: scale(1);
   }
-  
-  /* Make the modal visible when loading is active */
-  .modal--active {
-    display: flex;
+
+  100% {
+    transform: scale(1.1);
+    /* Modify the scale factor for wave effect */
   }
-  
-  /* Styling for the modal content */
-  .modal-content {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    text-align: center;
-    position: relative;
-    padding-top: 40%;
+}
+
+/* Example bubble animation */
+.bubble {
+  width: 25px;
+  height: 25px;
+  background-color: rgb(54, 54, 223);
+  border-radius: 50%;
+  position: absolute;
+  animation: bubbleAnimation 1s ease infinite;
+}
+
+/* Keyframes for the bubble animation */
+@keyframes bubbleAnimation {
+  0% {
+    transform: translateY(0);
   }
-  
-  /* Sea animation styling */
-  .sea-animation {
-    position: relative;
-    width: 100px;
-    height: 100px; /* Adjust the width and height of the animation */
-    background-color: #88d8b0; /* Color of the 'sea' */
-    border-radius: 50%; /* Makes it circular */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: oceanWaves 1.5s linear infinite alternate; /* Apply the animation */
-    margin: 0 auto; /* Center the sea animation horizontally */
+
+  50% {
+    transform: translateY(-20px);
   }
-  
-  /* Keyframes for the sea wave animation */
-  @keyframes oceanWaves {
-    0% {
-      transform: scale(1);
-    }
-  
-    100% {
-      transform: scale(1.1); /* Modify the scale factor for wave effect */
-    }
+
+  100% {
+    transform: translateY(0);
   }
-  
-  /* Example bubble animation */
-  .bubble {
-    width: 25px;
-    height: 25px;
-    background-color: rgb(54, 54, 223);
-    border-radius: 50%;
-    position: absolute;
-    animation: bubbleAnimation 1s ease infinite;
-  }
-  
-  /* Keyframes for the bubble animation */
-  @keyframes bubbleAnimation {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-  
+}

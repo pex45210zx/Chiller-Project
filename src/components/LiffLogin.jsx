@@ -41,7 +41,7 @@ function LiffLogin() {
 
     return (
         <div className={`modal ${loading ? 'modal--active' : ''}`}>
-            <div className="modal-content">
+            <div className="modal-content1">
                 <div className="sea-animation">
                     {/* Your aquatic-themed animation */}
                     {/* You can modify or add elements for the sea animation */}
