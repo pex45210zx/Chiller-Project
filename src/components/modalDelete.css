@@ -1,86 +1,91 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap');
 
 .modal-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000; /* Ensure it's above other elements */
-  }
-  
-  .modal-delete {
-    border-radius: 15px;
-    background: linear-gradient(180deg, #4DF 0%, #2C9BCD 40.95%, #083B86 100%);
-    padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-    font-family: 'Signika Negative', sans-serif;
-    color: #fff;
-    width: 300px;
-    height: 350px;
-  }
-  
-  .modal-content {
-    width: 100%;
-    height: 100%;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  /* Ensure it's above other elements */
+}
 
-  .icons-alert {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.modal-delete {
+  border-radius: 15px;
+  background: linear-gradient(180deg, #4DF 0%, #2C9BCD 40.95%, #083B86 100%);
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  font-family: 'Signika Negative', sans-serif;
+  color: #fff;
+  width: 300px;
+  height: 350px;
+}
 
-  }
+.modal-content {
+  border-radius: 5px;
+  text-align: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
-  .exclamtri {
-    color: #f23d3d;
-    width: 140px;
-    height: 120px;
-    margin: auto;
-    filter: drop-shadow(0px 7px 4px rgba(0, 0, 0, 0.25));
-  }
-  
-  .modal-content p {
-    font-size: 30px;
-    font-weight: 500;
-    margin-bottom: 20px;
-  }
-  
-  .modal-content button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    width: 195px;
-    height: 45px;
-    background-color: #f23d3d;
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-    border: none;
-    border-radius: 100px;
-    transition: background-color .3s;
-    text-align: center;
-    margin: auto auto;
-    font-size: 23px;
-    font-weight: 700;
-  }
-  
-  .modal-content button:hover {
-    background-color: rgb(181, 102, 102); /* Change this to your desired button background color on hover */
-  }
-  
-  .modal-content button.cancel {
-    margin: auto;
-    background-color: #323232;
-  }
-  
-  .modal-content button.cancel:hover {
-    background-color: #646569;/* Change this to your desired button background color on hover */
-  }
-  
+.icons-alert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.exclamtri {
+  color: #f23d3d;
+  width: 140px;
+  height: 120px;
+  margin: auto;
+  filter: drop-shadow(0px 7px 4px rgba(0, 0, 0, 0.25));
+}
+
+.modal-content p {
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.modal-content button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  width: 195px;
+  height: 45px;
+  background-color: #f23d3d;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 100px;
+  transition: background-color .3s;
+  text-align: center;
+  margin: auto auto;
+  font-size: 23px;
+  font-weight: 700;
+}
+
+.modal-content button:hover {
+  background-color: rgb(181, 102, 102);
+  /* Change this to your desired button background color on hover */
+}
+
+.modal-content button.cancel {
+  margin: auto;
+  background-color: #323232;
+  margin-top: 10px;
+}
+
+.modal-content button.cancel:hover {
+  background-color: #646569;
+  /* Change this to your desired button background color on hover */
+}

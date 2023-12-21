@@ -103,7 +103,7 @@ function RegisterChiller() {
           console.error('An error occurred:', error);
         }
       } else {
-        setModalMessage('Wrond chiller ID');
+        setModalMessage('Wrong chiller ID');
         setIsModalOpen(true);
       }
 
