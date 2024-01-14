@@ -6,7 +6,7 @@ import { getProfileData } from '../../components/localStorageUtils';
 import liff from '@line/liff';
 import Header from '../../components/Header.jsx';
 import { fetchChillerData } from '../../components/googleSheetsApi';
-import { FaExclamationTriangle, FaExclamationCircle } from 'react-icons/fa';
+import { FaExclamationTriangle } from 'react-icons/fa';
 import ModalPopUp from '../../components/modalPopUp';
 import ModalDelete from '../../components/modalDelete';
 

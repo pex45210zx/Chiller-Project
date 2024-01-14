@@ -6,6 +6,8 @@ import liff from '@line/liff';
 import { getProfileData } from '../../components/localStorageUtils';
 import Header from '../../components/Header.jsx';
 import { fetchChillerData } from '../../components/googleSheetsApi';
+import { FaBell } from "react-icons/fa";
+
 
 function Home() {
   const [click, setClick] = useState(false);
@@ -13,6 +15,9 @@ function Home() {
   const { profilePicture, displayName } = getProfileData();
   const [chillerOptions, setChillerOptions] = useState([]);
   const [selectedChiller, setSelectedChiller] = useState(''); // State to track selected chiller
+  const [notificationOn, setNotificationOn] = useState(false);
+  const sliderTextOnClass = notificationOn ? 'slider-text-on' : '';
+  const sliderTextOffClass = notificationOn ? '' : 'slider-text-off';
 
   useEffect(() => {
     const handleBackButton = (e) => {
@@ -53,22 +58,30 @@ function Home() {
     try {
       const { userId } = getProfileData();
       const updatedChillerData = await fetchChillerData();
-      
+  
       const filteredChillers = updatedChillerData.filter(chiller => chiller.userId === userId);
       setChillerOptions(filteredChillers);
-
+  
       const chillerStillExists = filteredChillers.some(chiller => chiller.chillerName === selectedChiller);
       if (!chillerStillExists && filteredChillers.length > 0) {
         setSelectedChiller(filteredChillers[0].chillerName);
       }
+  
+      // Check if the selected chiller's notificationStatus is 'on' or not and set notificationOn state
+      const selectedChillerData = filteredChillers.find(chiller => chiller.chillerName === selectedChiller);
+      if (selectedChillerData && selectedChillerData.notificationStatus === 'on') {
+        setNotificationOn(true);
+      } else {
+        setNotificationOn(false);
+      }
     } catch (error) {
       console.error('Error fetching updated chiller data:', error);
     }
-  };
+  };  
 
   // Function to periodically fetch updated data (adjust the interval as needed)
   useEffect(() => {
-    const interval = setInterval(fetchUpdatedChillerData, 500); // Fetch data every minute
+    const interval = setInterval(fetchUpdatedChillerData, 1000); // Fetch data every minute
     return () => clearInterval(interval); // Clear interval on component unmount
   }, [selectedChiller]); // Add selectedChiller to the dependencies to update when it changes
 
@@ -87,6 +100,40 @@ function Home() {
     setSelectedChiller(e.target.value);
   };
 
+  const toggleNotification = async () => {
+    setNotificationOn((prev) => !prev);
+    const { userId } = getProfileData();
+  
+    // Find the chiller object based on selectedChiller and userId
+    const selectedChillerObj = chillerOptions.find(
+      (chiller) => chiller.chillerName === selectedChiller && chiller.userId === userId
+    );
+  
+    try {
+      const response = await fetch(
+        `https://api.sheety.co/313ba156926928db7871fc95577d36d9/projectChillerData/data/${selectedChillerObj.id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            datum: {
+              notificationStatus: notificationOn ? 'on' : 'off',
+            },
+          }),
+        }
+      );
+  
+      if (!response.ok) {
+        console.error('Failed to update notification status in the spreadsheet');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
+  
+
   return (
     <div className="header">
       <Header
@@ -101,7 +148,7 @@ function Home() {
           <div className="homepage-title">
             Homepage
           </div>
-          <div className="description-home">Please select your chiller to monitor its status</div>          
+          <div className="description-home">Please select your chiller to monitor its status</div>
           <div className="chiller-dropdown">
             <label className="chiller-select">Select your chiller</label>
             <div className="selection-area">
@@ -115,6 +162,20 @@ function Home() {
             </div>
           </div>
           <div className="chiller-details">
+            <div className="notification-toggle">
+              <label className="switch">
+                <div className="noti-area">
+                  <div className="emoji-noti">
+                    <FaBell className='FaBell-icon' />
+                  </div>
+                  <input type="checkbox" onChange={toggleNotification} checked={notificationOn} />
+                  <span className="slider">
+                    <span className={`slider-text-on ${sliderTextOnClass}`}>On</span>
+                    <span className={`slider-text-off ${sliderTextOffClass}`}>Off</span>
+                  </span>
+                </div>
+              </label>
+            </div>
             <div className="chiller-con">
               {chillerOptions.map((chiller) => (
                 <div key={chiller.id} style={{ display: chiller.chillerName === selectedChiller ? 'block' : 'none', width: '100%' }}>

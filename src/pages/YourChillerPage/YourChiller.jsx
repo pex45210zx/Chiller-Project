@@ -25,8 +25,6 @@ function YourChiller() {
   const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal
 
 
-
-
   const handleClick = () => {
     setClick(!click);
   };
