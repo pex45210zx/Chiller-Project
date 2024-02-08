@@ -20,18 +20,6 @@ function Home() {
   const sliderTextOffClass = notificationOn ? '' : 'slider-text-off';
 
   useEffect(() => {
-    const handleBackButton = (e) => {
-      e.preventDefault();
-    };
-
-    window.addEventListener('popstate', handleBackButton);
-
-    return () => {
-      window.removeEventListener('popstate', handleBackButton);
-    };
-  }, []);
-
-  useEffect(() => {
     async function fetchData() {
       const { userId } = getProfileData();
 
@@ -48,25 +36,7 @@ function Home() {
       if (filteredChillers.length > 0) {
         setSelectedChiller(filteredChillers[0].chillerName);
       }
-    }
 
-    fetchData();
-  }, []);
-
-  // Function to fetch updated chiller data and update temperature
-  const fetchUpdatedChillerData = async () => {
-    try {
-      const { userId } = getProfileData();
-      const updatedChillerData = await fetchChillerData();
-  
-      const filteredChillers = updatedChillerData.filter(chiller => chiller.userId === userId);
-      setChillerOptions(filteredChillers);
-  
-      const chillerStillExists = filteredChillers.some(chiller => chiller.chillerName === selectedChiller);
-      if (!chillerStillExists && filteredChillers.length > 0) {
-        setSelectedChiller(filteredChillers[0].chillerName);
-      }
-  
       // Check if the selected chiller's notificationStatus is 'on' or not and set notificationOn state
       const selectedChillerData = filteredChillers.find(chiller => chiller.chillerName === selectedChiller);
       if (selectedChillerData && selectedChillerData.notificationStatus === 'on') {
@@ -74,14 +44,116 @@ function Home() {
       } else {
         setNotificationOn(false);
       }
+    }
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchNotificationStatus() {
+      const { userId } = getProfileData();
+
+      // Find the chiller object based on selectedChiller and userId
+      const selectedChillerObj = chillerOptions.find(
+        (chiller) => chiller.chillerName === selectedChiller && chiller.userId === userId
+      );
+
+      if (!selectedChillerObj) {
+        console.error('Selected chiller object not found.');
+        return;
+      }
+
+      try {
+        const response = await fetch(
+          `https://api.sheety.co/313ba156926928db7871fc95577d36d9/projectChillerData/data/${selectedChillerObj.id}`
+        );
+
+        if (!response.ok) {
+          throw new Error('Failed to fetch chiller data');
+        }
+
+        const chillerData = await response.json();
+        const { notificationStatus } = chillerData.datum;
+
+        // Set the notification status based on the fetched data
+        setNotificationOn(notificationStatus === 'on');
+      } catch (error) {
+        console.error('Error fetching chiller data:', error);
+        // If there's an error fetching data, set notification status to 'off'
+        setNotificationOn(false);
+      }
+    }
+
+    fetchNotificationStatus();
+  }, [selectedChiller]);
+
+  const toggleNotification = async () => {
+    const { userId } = getProfileData();
+
+    // Find the chiller object based on selectedChiller and userId
+    const selectedChillerObj = chillerOptions.find(
+      (chiller) => chiller.chillerName === selectedChiller && chiller.userId === userId
+    );
+
+    if (!selectedChillerObj) {
+      console.error('Selected chiller object not found.');
+      return;
+    }
+
+    try {
+      // Make the state update synchronous to ensure it reflects immediately
+      setNotificationOn((prev) => !prev);
+
+      const response = await fetch(
+        `https://api.sheety.co/313ba156926928db7871fc95577d36d9/projectChillerData/data/${selectedChillerObj.id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            datum: {
+              notificationStatus: !notificationOn ? 'on' : 'off', // Toggle the notification status
+            },
+          }),
+        }
+      );
+
+      if (response.ok) {
+        console.log('Notification status updated successfully.');
+      } else {
+        console.error('Failed to update notification status in the spreadsheet');
+        // Rollback the state change since the API call failed
+        setNotificationOn((prev) => !prev);
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+      // Rollback the state change on error
+      setNotificationOn((prev) => !prev);
+    }
+  };
+
+  // Function to fetch updated chiller data and update temperature
+  const fetchUpdatedChillerData = async () => {
+    try {
+      const { userId } = getProfileData();
+      const updatedChillerData = await fetchChillerData();
+
+      const filteredChillers = updatedChillerData.filter(chiller => chiller.userId === userId);
+      setChillerOptions(filteredChillers);
+
+      const chillerStillExists = filteredChillers.some(chiller => chiller.chillerName === selectedChiller);
+      if (!chillerStillExists && filteredChillers.length > 0) {
+        setSelectedChiller(filteredChillers[0].chillerName);
+      }
     } catch (error) {
       console.error('Error fetching updated chiller data:', error);
     }
-  };  
+  };
 
   // Function to periodically fetch updated data (adjust the interval as needed)
   useEffect(() => {
-    const interval = setInterval(fetchUpdatedChillerData, 1000); // Fetch data every minute
+    const interval = setInterval(fetchUpdatedChillerData, 500); // Fetch data every minute
     return () => clearInterval(interval); // Clear interval on component unmount
   }, [selectedChiller]); // Add selectedChiller to the dependencies to update when it changes
 
@@ -99,40 +171,6 @@ function Home() {
   const handleChillerChange = (e) => {
     setSelectedChiller(e.target.value);
   };
-
-  const toggleNotification = async () => {
-    setNotificationOn((prev) => !prev);
-    const { userId } = getProfileData();
-  
-    // Find the chiller object based on selectedChiller and userId
-    const selectedChillerObj = chillerOptions.find(
-      (chiller) => chiller.chillerName === selectedChiller && chiller.userId === userId
-    );
-  
-    try {
-      const response = await fetch(
-        `https://api.sheety.co/313ba156926928db7871fc95577d36d9/projectChillerData/data/${selectedChillerObj.id}`,
-        {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            datum: {
-              notificationStatus: notificationOn ? 'on' : 'off',
-            },
-          }),
-        }
-      );
-  
-      if (!response.ok) {
-        console.error('Failed to update notification status in the spreadsheet');
-      }
-    } catch (error) {
-      console.error('An error occurred:', error);
-    }
-  };
-  
 
   return (
     <div className="header">
