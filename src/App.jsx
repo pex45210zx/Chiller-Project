@@ -6,6 +6,7 @@ import YourChiller from './pages/YourChillerPage/YourChiller.jsx';
 import Delete from './pages/DeletePage/Delete.jsx'
 import LiffLogin from './components/LiffLogin.jsx';
 import LiffInitializer from './components/LiffInitializer.jsx';
+import LiffLogout from './components/LiffLogout.jsx';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/register-chiller" element={<RegisterChiller />} />
         <Route path="/your-chiller" element={<YourChiller />} />
         <Route path="/delete" element={<Delete />} />
+        <Route path="/liffLogout" element={<LiffLogout />} />
       </Routes>
     </LiffInitializer>
   );

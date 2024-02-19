@@ -1,18 +1,14 @@
 import liff from '@line/liff';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { saveProfileData } from './localStorageUtils';
 import './LiffLogin.css';
 import logo from '../images/logo2.png';
 
-function LiffLogin() {
-    const [profilePicture, setProfilePicture] = useState('');
-    const [userId, setUserId] = useState('');
-    const [displayName, setDisplayName] = useState('');
-    const navigate = useNavigate();
+function LiffLogout() {
     const [loading, setLoading] = useState(true);
     const [loginAttempts, setLoginAttempts] = useState(0);
     const maxLoginAttempts = 3; // Maximum number of login attempts
+    const navigate = useNavigate();
 
     useEffect(() => {
         const loginWithLiff = async () => {
@@ -20,24 +16,12 @@ function LiffLogin() {
                 await liff.init({ liffId: '2000665579-jvJl5OyP' });
 
                 if (!liff.isLoggedIn()) {
-                    liff.login();
-                } else {
-                    const profile = await liff.getProfile();
-                    setProfilePicture(profile.pictureUrl);
-                    setUserId(profile.userId);
-                    setDisplayName(profile.displayName);
-
-                    saveProfileData(profile.pictureUrl, profile.displayName, profile.userId);
-
-                    navigate('/home');
+                    liff.logout();
                 }
             } catch (error) {
                 console.log(error);
-                // Increase login attempts
                 setLoginAttempts(prevAttempts => prevAttempts + 1);
-                // Check if maximum login attempts reached
                 if (loginAttempts >= maxLoginAttempts) {
-                    // Reload the page
                     window.location.reload();
                 }
             } finally {
@@ -46,20 +30,24 @@ function LiffLogin() {
         };
 
         loginWithLiff();
-    }, [navigate, loginAttempts]);
+    }, [loginAttempts]);
+
+    const handleNavigateToWebsite = () => {
+        navigate('/');
+    };
 
     return (
         <div className={`modal ${loading ? 'modal--active' : ''}`}>
             <div className="modal-content1">
                 <div className="sea-animation">
-                <img src={logo} alt="aqua Logo" className="logoLoading" />
-                <img src={logo} alt="aqua Logo" className="logoLoading" />
-                <img src={logo} alt="aqua Logo" className="logoLoading" />
+                    <img src={logo} alt="aqua Logo" className="logoLoading" />
+                    <img src={logo} alt="aqua Logo" className="logoLoading" />
+                    <img src={logo} alt="aqua Logo" className="logoLoading" />
                 </div>
-                <p>Loading...</p>
+                <button className="gtwbutt" onClick={handleNavigateToWebsite}>Go to website</button>
             </div>
         </div>
     );
 }
 
-export default LiffLogin;
+export default LiffLogout;

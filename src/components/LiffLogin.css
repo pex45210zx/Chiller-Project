@@ -34,18 +34,12 @@
   position: relative;
   width: 100px;
   height: 100px;
-  /* Adjust the width and height of the animation */
-  background-color: #88d8b0;
-  /* Color of the 'sea' */
   border-radius: 50%;
-  /* Makes it circular */
   display: flex;
   justify-content: center;
   align-items: center;
   animation: oceanWaves 1.5s linear infinite alternate;
-  /* Apply the animation */
   margin: 0 auto;
-  /* Center the sea animation horizontally */
 }
 
 /* Keyframes for the sea wave animation */
@@ -61,11 +55,9 @@
 }
 
 /* Example bubble animation */
-.bubble {
-  width: 25px;
-  height: 25px;
-  background-color: rgb(54, 54, 223);
-  border-radius: 50%;
+.logoLoading {
+  width: 100px;
+  height: 100px;
   position: absolute;
   animation: bubbleAnimation 1s ease infinite;
 }
@@ -83,4 +75,26 @@
   100% {
     transform: translateY(0);
   }
+}
+
+.gtwbutt {
+  display: inline;
+  padding: 5px;
+  width: 200px;
+  height: 45px;
+  background-color: #323232;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  border-radius: 100px;
+  transition: background-color .3s;
+  text-align: center;
+  margin: 10px 0 0 0px;
+  font-size: 20px;
+}
+
+.gtwbutt:hover {
+  background-color: #646569;
+  /* Change this to your desired button background color on hover */
 }

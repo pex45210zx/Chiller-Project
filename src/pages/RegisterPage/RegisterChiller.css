@@ -76,17 +76,6 @@
     /* Change this to your desired button background color on hover */
 }
 
-.description {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: #FFF;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    width: 80%;
-}
-
 
 @media screen and (max-width: 1120px) {
 
