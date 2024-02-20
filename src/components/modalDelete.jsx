@@ -8,7 +8,7 @@ function ModalDelete({ isOpenD, onClose, onConfirm }) {
   return (
     <div className="modal-container">
       <div className="modal-delete">
-        <div className="modal-content">
+        <div className="modal-contentc">
           <div className="icons-alert"><FaExclamationTriangle className='exclamtri'/></div>
           <p>Are you sure you want to delete this chiller?</p>
           <button onClick={onConfirm}>Confirm delete</button>

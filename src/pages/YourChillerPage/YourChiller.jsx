@@ -215,7 +215,7 @@ function YourChiller() {
       />
       <div className="bodyChiller">
         <div className="body-con">
-          <div className="yourChiller-title">Your Chiller Page</div>
+          <div className="yourChiller-title">Setting Page</div>
           <div className="chiller-dropdown1">
             <label htmlFor="chiller-select">Select your chiller:</label>
             <div className="selection-area-ch">

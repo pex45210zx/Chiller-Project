@@ -40,6 +40,12 @@ function RegisterChiller() {
 
     const { userId } = getProfileData();
 
+    if (!chillerId.trim()) {
+      setModalMessage('Chiller ID cannot be empty');
+      setIsModalOpen(true);
+      return;
+    }
+
     if (!chillerName.trim()) {
       setModalMessage('Chiller name cannot be empty');
       setIsModalOpen(true);

@@ -25,7 +25,7 @@
     height: 350px;
   }
   
-  .modal-content {
+  .modal-contentc {
     width: 100%;
     height: 100%;
   }
@@ -45,13 +45,13 @@
     filter: drop-shadow(0px 7px 4px rgba(0, 0, 0, 0.25));
   }
   
-  .modal-content p {
+  .modal-contentc p {
     font-size: 30px;
     font-weight: 500;
     margin-bottom: 20px;
   }
   
-  .modal-content button {
+  .modal-contentc button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -71,17 +71,17 @@
     font-weight: 700;
   }
   
-  .modal-content button:hover {
+  .modal-contentc button:hover {
     background-color: rgb(181, 102, 102);
   }
   
-  .modal-content button.cancel {
+  .modal-contentc button.cancel {
     margin: auto;
     background-color: #323232;
     margin-top: 10px;
   }
   
-  .modal-content button.cancel:hover {
+  .modal-contentc button.cancel:hover {
     background-color: #646569;
   }
   
