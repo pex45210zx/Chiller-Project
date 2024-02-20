@@ -19,8 +19,8 @@ function Delete() {
   const [selectedChiller, setSelectedChiller] = useState('');
   const [chillerDelete, setChillerDelete] = useState('');
   const [modalMessage, setModalMessage] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal
-  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false); // State to control the confirmation dialog
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isConfirmationOpen, setIsConfirmationOpen] = useState(false);
 
 
   useEffect(() => {
@@ -49,7 +49,6 @@ function Delete() {
 
   const handleChillerChange = (e) => {
     setSelectedChiller(e.target.value);
-    // Reset temperature values when the chiller is changed
   };
 
   const handleChillerDelete = async (e) => {
@@ -58,8 +57,6 @@ function Delete() {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-
-    // Find the selected chiller by name
     const selectedChillerObj = chillerOptions.find(
       (chiller) => chiller.chillerName === selectedChiller
     );
@@ -70,44 +67,38 @@ function Delete() {
       return;
     }
 
-    // Ensure chillerDelete is not empty
     if (!chillerDelete) {
       setModalMessage('Chiller ID is required.');
       setIsModalOpen(true);
       return;
     }
 
-    // Check if the entered chillerDelete matches the chillerId of the selected chiller
     if (chillerDelete !== selectedChillerObj.chillerId) {
       setModalMessage('Wrong chiller ID, please try another.');
       setIsModalOpen(true);
       return;
     }
 
-    console.log('Opening confirmation dialog'); // Debugging statement
-    // Show the confirmation dialog
+    console.log('Opening confirmation dialog');
     setIsConfirmationOpen(true);
   };
 
   const handleConfirmDelete = async () => {
 
-    // Find the selected chiller by name
     const selectedChillerObj = chillerOptions.find(
       (chiller) => chiller.chillerName === selectedChiller
     );
 
-    // Define the data to be updated (set columns B to F to empty)
     const updatedData = {
-      userId: '',      // Update this to the empty value you want for userId (B)
-      chillerName: '', // Update this to the empty value you want for chillerName (C)
-      chillerMode: '', // Update this to the empty value you want for chillerMode (D)
-      highTemp: '',    // Update this to the empty value you want for highTemp (E)
-      lowTemp: '',     // Update this to the empty value you want for lowTemp (F)
+      userId: '',      
+      chillerName: '', 
+      chillerMode: '', 
+      highTemp: '',    
+      lowTemp: '',  
     };
-    // Add your delete logic here
+ 
     try {
       const chillerIdToUpdate = selectedChillerObj.id;
-      // Update data using the Sheety API with a PUT request
       const updateResponse = await fetch(
         `https://api.sheety.co/313ba156926928db7871fc95577d36d9/projectChillerData/data/${chillerIdToUpdate}`,
         {
@@ -127,23 +118,21 @@ function Delete() {
       setModalMessage(`Deleted chiller success!!`);
       setIsModalOpen(true);
 
-      // After displaying the success message, navigate to /home
       setTimeout(() => {
-        setIsModalOpen(false); // Close the modal
-        navigate('/home'); // Navigate to /home
-      }, 2000); // Delay for 2 seconds (adjust the delay as needed)
+        setIsModalOpen(false);
+        navigate('/home'); 
+      }, 2000);
     } catch (error) {
       console.error('An error occurred:', error);
     }
 
-    console.log('Closing confirmation dialog'); // Debugging statement
-    // Close the confirmation dialog
+    console.log('Closing confirmation dialog');
     setIsConfirmationOpen(false);
   };
 
 
   const closeModal = () => {
-    setIsModalOpen(false); // Close the modal
+    setIsModalOpen(false);
   };
 
   return (
@@ -192,9 +181,7 @@ function Delete() {
           </form>
         </div>
       </div>
-      {/* Render the custom modal */}
       <ModalPopUp isOpen={isModalOpen} onClose={closeModal} message={modalMessage} />
-      {/* Render the confirmation dialog */}
       <ModalDelete
         isOpenD={isConfirmationOpen}
         onClose={() => setIsConfirmationOpen(false)}

@@ -7,7 +7,7 @@ import logo from '../images/logo2.png';
 function LiffLogout() {
     const [loading, setLoading] = useState(true);
     const [loginAttempts, setLoginAttempts] = useState(0);
-    const maxLoginAttempts = 3; // Maximum number of login attempts
+    const maxLoginAttempts = 3;
     const navigate = useNavigate();
 
     useEffect(() => {

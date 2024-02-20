@@ -14,7 +14,7 @@ function RegisterChiller() {
   const [chillerName, setChillerName] = useState('');
   const navigate = useNavigate();
   const { profilePicture, displayName } = getProfileData();
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
 
   const handleClick = () => {
@@ -38,86 +38,73 @@ function RegisterChiller() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { userId } = getProfileData(); // Retrieve the userId from localStorage
+    const { userId } = getProfileData();
 
     if (!chillerName.trim()) {
       setModalMessage('Chiller name cannot be empty');
-      setIsModalOpen(true); // Open the modal
+      setIsModalOpen(true);
       return;
     }
 
     try {
-      // Fetch the data from the Sheety API using the function
       const chillerData = await fetchChillerData();
 
       if (chillerData === null) {
-        return; // Exit the function if there was an error
+        return;
       }
 
-      // Check if the chillerId exists in the spreadsheet
       const matchingChiller = chillerData.find((row) => row.chillerId === chillerId);
 
       if (matchingChiller) {
-        // Check if the provided userId matches the one registered with the chillerId
         if (!matchingChiller.userId || matchingChiller.userId === userId || matchingChiller.userId === 'null' || matchingChiller.userId === '') {
-          // Check if the chillerName is already used by the current userId
           const isNameUsedByCurrentUser = chillerData.some((row) => row.userId === userId && row.chillerName === chillerName);
 
           if (isNameUsedByCurrentUser) {
             setModalMessage('This Chiller name is already used by you');
             setIsModalOpen(true);
-            return; // Exit the function to prevent submission
+            return;
           }
 
-          // Proceed with the data insertion/update
         } else {
           setModalMessage('This Chiller is already registered with a different userId');
           setIsModalOpen(true);
-          return; // Exit the function to prevent submission
+          return;
         }
 
-        // Update the chillerName and userId in the corresponding row
         matchingChiller.chillerName = chillerName;
-        matchingChiller.userId = userId; // Add this line
+        matchingChiller.userId = userId;
 
-        // Send a PUT request to update the row in the Sheety API
         try {
           const response = await fetch(`https://api.sheety.co/313ba156926928db7871fc95577d36d9/projectChillerData/data/${matchingChiller.id}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ datum: matchingChiller }), // Use the correct property name 'datum'
+            body: JSON.stringify({ datum: matchingChiller }),
           });
 
           if (response.ok) {
-            // Data was successfully updated
             setModalMessage('Chiller data updated successfully');
             setIsModalOpen(true);
           } else {
-            // Handle the error and log the response content
             console.error('Failed to update chiller data', response.status, await response.text());
           }
         } catch (error) {
-          // Handle any network or other errors
           console.error('An error occurred:', error);
         }
       } else {
         setModalMessage('Wrong chiller ID');
         setIsModalOpen(true);
       }
-
-      // Optionally, you can clear the input fields after a successful update or when chiller ID is not found
       setChillerId('');
       setChillerName('');
     } catch (error) {
-      // Handle any network or other errors
       console.error('An error occurred:', error);
     }
   };
 
   const closeModal = () => {
-    setIsModalOpen(false); // Close the modal
+    setIsModalOpen(false);
   };
 
   return (
@@ -158,7 +145,6 @@ function RegisterChiller() {
           </form>
         </div>
       </div>
-      {/* Render the custom modal */}
       <ModalPopUp isOpen={isModalOpen} onClose={closeModal} message={modalMessage} />
     </div>
   );

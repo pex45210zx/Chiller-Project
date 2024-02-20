@@ -14,7 +14,7 @@ function Home() {
   const navigate = useNavigate();
   const { profilePicture, displayName } = getProfileData();
   const [chillerOptions, setChillerOptions] = useState([]);
-  const [selectedChiller, setSelectedChiller] = useState(''); // State to track selected chiller
+  const [selectedChiller, setSelectedChiller] = useState('');
   const [notificationOn, setNotificationOn] = useState(false);
   const sliderTextOnClass = notificationOn ? 'slider-text-on' : '';
   const sliderTextOffClass = notificationOn ? '' : 'slider-text-off';
@@ -25,19 +25,14 @@ function Home() {
 
       const chillerData = await fetchChillerData();
       console.log(chillerData);
-
-      // Filter chillers for the current user
       const filteredChillers = chillerData.filter((chiller) => chiller.userId === userId);
 
-      // Set all user's chillers in chillerOptions
       setChillerOptions(filteredChillers);
 
-      // If there are any chillers, select the first one by default
       if (filteredChillers.length > 0) {
         setSelectedChiller(filteredChillers[0].chillerName);
       }
 
-      // Check if the selected chiller's notificationStatus is 'on' or not and set notificationOn state
       const selectedChillerData = filteredChillers.find(chiller => chiller.chillerName === selectedChiller);
       if (selectedChillerData && selectedChillerData.notificationStatus === 'on') {
         setNotificationOn(true);
@@ -53,7 +48,6 @@ function Home() {
     async function fetchNotificationStatus() {
       const { userId } = getProfileData();
 
-      // Find the chiller object based on selectedChiller and userId
       const selectedChillerObj = chillerOptions.find(
         (chiller) => chiller.chillerName === selectedChiller && chiller.userId === userId
       );
@@ -75,11 +69,9 @@ function Home() {
         const chillerData = await response.json();
         const { notificationStatus } = chillerData.datum;
 
-        // Set the notification status based on the fetched data
         setNotificationOn(notificationStatus === 'on');
       } catch (error) {
         console.error('Error fetching chiller data:', error);
-        // If there's an error fetching data, set notification status to 'off'
         setNotificationOn(false);
       }
     }
@@ -90,7 +82,6 @@ function Home() {
   const toggleNotification = async () => {
     const { userId } = getProfileData();
 
-    // Find the chiller object based on selectedChiller and userId
     const selectedChillerObj = chillerOptions.find(
       (chiller) => chiller.chillerName === selectedChiller && chiller.userId === userId
     );
@@ -101,7 +92,6 @@ function Home() {
     }
 
     try {
-      // Make the state update synchronous to ensure it reflects immediately
       setNotificationOn((prev) => !prev);
 
       const response = await fetch(
@@ -113,7 +103,7 @@ function Home() {
           },
           body: JSON.stringify({
             datum: {
-              notificationStatus: !notificationOn ? 'on' : 'off', // Toggle the notification status
+              notificationStatus: !notificationOn ? 'on' : 'off',
             },
           }),
         }
@@ -123,17 +113,14 @@ function Home() {
         console.log('Notification status updated successfully.');
       } else {
         console.error('Failed to update notification status in the spreadsheet');
-        // Rollback the state change since the API call failed
         setNotificationOn((prev) => !prev);
       }
     } catch (error) {
       console.error('An error occurred:', error);
-      // Rollback the state change on error
       setNotificationOn((prev) => !prev);
     }
   };
 
-  // Function to fetch updated chiller data and update temperature
   const fetchUpdatedChillerData = async () => {
     try {
       const { userId } = getProfileData();
@@ -151,11 +138,10 @@ function Home() {
     }
   };
 
-  // Function to periodically fetch updated data (adjust the interval as needed)
   useEffect(() => {
-    const interval = setInterval(fetchUpdatedChillerData, 500); // Fetch data every minute
-    return () => clearInterval(interval); // Clear interval on component unmount
-  }, [selectedChiller]); // Add selectedChiller to the dependencies to update when it changes
+    const interval = setInterval(fetchUpdatedChillerData, 500);
+    return () => clearInterval(interval);
+  }, [selectedChiller]);
 
   const handleClick = () => {
     setClick(!click);
@@ -167,7 +153,6 @@ function Home() {
     console.log('clicked logout');
   };
 
-  // Function to handle chiller selection from the dropdown
   const handleChillerChange = (e) => {
     setSelectedChiller(e.target.value);
   };

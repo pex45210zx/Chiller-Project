@@ -36,7 +36,6 @@
     width: 100%;
 }
 
-/* Add these styles to your Home.css file */
 .chiller-select {
     font-size: 1.5rem;
     font-weight: bold;
@@ -118,10 +117,8 @@
     width: 100%;
 }
 
-/* Add these styles to your Home.css file */
 .chiller-details {
     position: relative;
-    /* Add relative positioning to create a reference for absolute positioning */
     border-radius: 10px;
     padding: 15px;
     background: linear-gradient(180deg, #C0F4FF 0%, rgba(0, 146, 178, 0.00) 100%);
@@ -131,9 +128,7 @@
 .notification-toggle {
     position: absolute;
     top: 15px;
-    /* Adjust top positioning */
     right: 15px;
-    /* Move the toggle to the right */
     display: flex;
     align-items: center;
     color: #fff;
@@ -143,7 +138,6 @@
 .notification-toggle {
     display: flex;
     align-items: center;
-    /* Align items vertically */
 }
 
 .noti-area {
@@ -159,13 +153,9 @@
 
 .emoji-noti {
     margin-right: 8px;
-    /* Adjust the margin as needed */
 }
 
-/* Update your existing CSS with the following changes */
-
 .switch {
-    /* ... (your existing styles) ... */
     position: relative;
     display: inline-block;
     width: 60px;
@@ -179,7 +169,6 @@
 }
 
 .slider {
-    /* ... (your existing styles) ... */
     position: absolute;
     top: 0;
     left: 0;
@@ -190,22 +179,17 @@
     transition: .4s;
     border-radius: 34px;
     overflow: hidden;
-    /* Hide overflowing text */
 }
 
 .slider-text-on,
 .slider-text-off {
-    /* Text styles */
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     width: 50%;
-    /* Equal width for both On and Off texts */
     text-align: center;
     transition: opacity 0.4s ease-in-out;
 }
-
-/* styles.css */
 
 .slider-text-on {
     left: 0;
@@ -245,16 +229,9 @@ input:checked+.slider:before {
     transform: translateX(26px);
 }
 
-
-
-
-
-
-/* Add these styles to your Home.css file */
 .temperature-container {
     display: flex;
     justify-content: space-between;
-    /* Separate high and low temperature columns */
     align-items: center;
     width: 100%;
 }

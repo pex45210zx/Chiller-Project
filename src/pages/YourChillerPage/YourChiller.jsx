@@ -22,7 +22,7 @@ function YourChiller() {
   const [modeSelected, setModeSelected] = useState(false);
   const [chillerSelected, setChillerSelected] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false); // State to control the modal
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
 
   const handleClick = () => {
@@ -30,7 +30,7 @@ function YourChiller() {
   };
 
   const handleChillerHighTemp = (e) => {
-    const value = parseFloat(e.target.value); // Parse input as a float
+    const value = parseFloat(e.target.value);
     if (!isNaN(value) && value >= 20 && value <= 35) {
       setHighTemp(value);
       setIsHighTempFilled(true);
@@ -41,7 +41,7 @@ function YourChiller() {
   };
 
   const handleChillerLowTemp = (e) => {
-    const value = parseFloat(e.target.value); // Parse input as a float
+    const value = parseFloat(e.target.value);
     if (!isNaN(value) && value >= 20 && value <= 35) {
       setLowTemp(value);
       setIsLowTempFilled(true);
@@ -59,11 +59,11 @@ function YourChiller() {
   };
 
   useEffect(() => {
-    setChillerSelected(!!selectedChiller); // Set chillerSelected to true if selectedChiller is not empty
+    setChillerSelected(!!selectedChiller);
   }, [selectedChiller]);
 
   useEffect(() => {
-    setModeSelected(!!selectedMode); // Set modeSelected to true if selectedMode is not empty
+    setModeSelected(!!selectedMode);
   }, [selectedMode]);
 
   useEffect(() => {
@@ -82,48 +82,45 @@ function YourChiller() {
 
   const handleChillerChange = (e) => {
     setSelectedChiller(e.target.value);
-    // Reset temperature values when the chiller is changed
     setHighTemp('');
     setLowTemp('');
   };
 
   const handleModeChange = (e) => {
     setSelectedMode(e.target.value);
-    // Set default temperature values based on the selected mode
     switch (e.target.value) {
       case 'Freshwater fish':
         setHighTemp('30');
         setLowTemp('28');
-        setIsHighTempFilled(true); // Update the flags
+        setIsHighTempFilled(true);
         setIsLowTempFilled(true);
         break;
       case 'Marine fish':
         setHighTemp('28');
         setLowTemp('27');
-        setIsHighTempFilled(true); // Update the flags
+        setIsHighTempFilled(true);
         setIsLowTempFilled(true);
         break;
       case 'Coral Reef tank':
         setHighTemp('26');
         setLowTemp('25');
-        setIsHighTempFilled(true); // Update the flags
+        setIsHighTempFilled(true);
         setIsLowTempFilled(true);
         break;
       case 'Aquatic plant':
         setHighTemp('26');
         setLowTemp('25');
-        setIsHighTempFilled(true); // Update the flags
+        setIsHighTempFilled(true);
         setIsLowTempFilled(true);
         break;
-      // Add cases for other modes if needed
       default:
         setHighTemp('');
         setLowTemp('');
-        setIsHighTempFilled(false); // Update the flags
+        setIsHighTempFilled(false);
         setIsLowTempFilled(false);
     }
   };
-  
+
   const modeOptions = [
     'Freshwater fish',
     'Marine fish',
@@ -136,13 +133,13 @@ function YourChiller() {
     e.preventDefault();
 
     if (!chillerSelected) {
-      setModalMessage('Please select a chiller.'); // Show an error message for chiller selection
+      setModalMessage('Please select a chiller.');
       setIsModalOpen(true);
       return;
     }
 
     if (!modeSelected) {
-      setModalMessage('Please select a chiller mode.'); // Show an error message
+      setModalMessage('Please select a chiller mode.');
       setIsModalOpen(true);
       return;
     }
@@ -153,7 +150,6 @@ function YourChiller() {
       return;
     }
 
-    // Add a check to ensure high temperature is not less than low temperature
     if (parseInt(chillerHighTemp) < parseInt(chillerLowTemp)) {
       setModalMessage('High temperature must be greater than low temperature.');
       setIsModalOpen(true);
@@ -162,7 +158,6 @@ function YourChiller() {
 
     const { userId } = getProfileData();
 
-    // Find the chiller object based on selectedChiller and userId
     const selectedChillerObj = chillerOptions.find(
       (chiller) => chiller.chillerName === selectedChiller && chiller.userId === userId
     );
@@ -173,7 +168,6 @@ function YourChiller() {
       return;
     }
 
-    // Update the chiller data in the spreadsheet
     try {
       const response = await fetch(
         `https://api.sheety.co/313ba156926928db7871fc95577d36d9/projectChillerData/data/${selectedChillerObj.id}`,
@@ -207,7 +201,7 @@ function YourChiller() {
   };
 
   const closeModal = () => {
-    setIsModalOpen(false); // Close the modal
+    setIsModalOpen(false);
   };
 
   return (
@@ -255,13 +249,13 @@ function YourChiller() {
               <div className="input-container">
                 <input
                   className='textfield'
-                  type="number" // Set the input type to number
+                  type="number"
                   placeholder="Set high temperature"
-                  value={chillerHighTemp.toString()} // Convert back to string to display the float value
+                  value={chillerHighTemp.toString()}
                   onChange={handleChillerHighTemp}
-                  step="0.1" // Allow floating-point values with up to 2 decimal places
-                  min="20" // Set the minimum value
-                  max="35" // Set the maximum value
+                  step="0.1"
+                  min="20"
+                  max="35"
                 />
                 <div className="side-text">High temp</div>
               </div>
@@ -270,13 +264,13 @@ function YourChiller() {
               <div className="input-container">
                 <input
                   className='textfield'
-                  type="number" // Set the input type to number
+                  type="number" 
                   placeholder="Set low temperature"
-                  value={chillerLowTemp.toString()} // Convert back to string to display the float value
+                  value={chillerLowTemp.toString()}
                   onChange={handleChillerLowTemp}
-                  step="0.1" // Allow floating-point values with up to 2 decimal places
-                  min="20" // Set the minimum value
-                  max="35" // Set the maximum value
+                  step="0.1" 
+                  min="20"
+                  max="35" 
                 />
                 <div className="side-text">Low temp</div>
               </div>
@@ -287,7 +281,6 @@ function YourChiller() {
           </form>
         </div>
       </div>
-      {/* Render the custom modal */}
       <ModalPopUp isOpen={isModalOpen} onClose={closeModal} message={modalMessage} />
     </div>
   );

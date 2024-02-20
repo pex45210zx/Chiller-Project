@@ -11,7 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Ensure it's above other elements */
+    z-index: 1000;
   }
   
   .modal-delete {
@@ -72,7 +72,7 @@
   }
   
   .modal-content button:hover {
-    background-color: rgb(181, 102, 102); /* Change this to your desired button background color on hover */
+    background-color: rgb(181, 102, 102);
   }
   
   .modal-content button.cancel {
@@ -82,6 +82,6 @@
   }
   
   .modal-content button.cancel:hover {
-    background-color: #646569;/* Change this to your desired button background color on hover */
+    background-color: #646569;
   }
   

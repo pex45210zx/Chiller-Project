@@ -1,5 +1,3 @@
-/* Home.css */
-
 @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap');
 
 
@@ -9,7 +7,6 @@ body {
 
 }
 
-/* If there are other containers, make sure to remove margin and padding from them as well. */
 .container {
     margin: 0;
     padding: 0;
@@ -39,9 +36,9 @@ body {
 }
 
 .brand-name {
-    font-size: 20px; /* Adjust the font size as needed */
-    color: #fff; /* Text color */
-    margin-left: 10px; /* Add spacing between the logo and text */
+    font-size: 20px;
+    color: #fff;
+    margin-left: 10px;
   }
   
 
@@ -52,10 +49,8 @@ body {
 }
 
 .logo1 {
-    /* Add the necessary styles for the logo when displayed */
-    width: 50px; /* Set the width as per your design */
-    height: 50px; /* Set the height as per your design */
-    /* Add more styles as needed */
+    width: 50px;
+    height: 50px;
 }
 
 .user-profile {
@@ -65,13 +60,9 @@ body {
 
 .user-profile img {
     width: 50px;
-    /* Adjust the size as needed */
     height: 50px;
-    /* Adjust the size as needed */
     border-radius: 50%;
-    /* Create a circular shape */
     margin-right: 15px;
-    /* Add some spacing between the image and text */
     margin-left: 15px;
 }
 
@@ -84,16 +75,12 @@ body {
 .menu {
     list-style-type: none;
     padding: 0;
-    /* Remove default padding */
 }
 
 .menu-button {
     display: flex;
-    /* Use flexbox to center content */
     align-items: center;
-    /* Vertically center content */
     justify-content: center;
-    /* Horizontally center content */
     padding: 5px;
     width: 230px;
     height: 45px;
@@ -111,7 +98,6 @@ body {
 
 .menu-button:hover {
     background-color: #0056b3;
-    /* Change this to your desired button background color on hover */
 }
 
 .icon {
@@ -141,13 +127,13 @@ body {
 
 .menu-link-logout {
     position: absolute;
-    bottom: 20px; /* Adjust the distance from the bottom as needed */
+    bottom: 20px;
     text-align: center;
     text-decoration: none;
     font-size: 20px;
     font-weight: 400;
     color: #fff;
-    width: 100%; /* Make the link take up the full width of the sidebar */
+    width: 100%;
   }
 
 .logout-link {
@@ -168,7 +154,6 @@ body {
 
 .logout-link:hover {
     background-color: rgb(208, 103, 103);
-    /* Change this to your desired button background color on hover */
 }
 
 
@@ -207,7 +192,7 @@ body {
         right: 0;
         display: flex;
         align-items: center;
-        margin-right: 10px; /* Add some spacing between the picture and the top/right edges */
+        margin-right: 10px;
     }
 
     .user-profile span {
@@ -253,7 +238,7 @@ body {
         right: 0;
         display: flex;
         align-items: center;
-        margin-right: 10px; /* Add some spacing between the picture and the top/right edges */
+        margin-right: 10px;
     }
 
     .user-profile span {

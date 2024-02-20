@@ -1,7 +1,5 @@
-/* LiffLogin.css */
 @import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300;400;500;600;700&display=swap');
 
-/* Styling for the loading modal */
 .modal {
   background: linear-gradient(180deg, #71E5FF 0%, #0053A0 100%);
   margin-top: auto;
@@ -13,12 +11,10 @@
   align-items: center;
 }
 
-/* Make the modal visible when loading is active */
 .modal--active {
   display: flex;
 }
 
-/* Styling for the modal content */
 .modal-content1 {
   display: block;
   justify-content: center;
@@ -29,7 +25,6 @@
   height: 100%;
 }
 
-/* Sea animation styling */
 .sea-animation {
   position: relative;
   width: 100px;
@@ -42,7 +37,6 @@
   margin: 0 auto;
 }
 
-/* Keyframes for the sea wave animation */
 @keyframes oceanWaves {
   0% {
     transform: scale(1);
@@ -50,11 +44,9 @@
 
   100% {
     transform: scale(1.1);
-    /* Modify the scale factor for wave effect */
   }
 }
 
-/* Example bubble animation */
 .logoLoading {
   width: 100px;
   height: 100px;
@@ -62,7 +54,6 @@
   animation: bubbleAnimation 1s ease infinite;
 }
 
-/* Keyframes for the bubble animation */
 @keyframes bubbleAnimation {
   0% {
     transform: translateY(0);
@@ -96,5 +87,4 @@
 
 .gtwbutt:hover {
   background-color: #646569;
-  /* Change this to your desired button background color on hover */
 }

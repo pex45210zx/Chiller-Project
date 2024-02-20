@@ -1,4 +1,3 @@
-// Function to fetch chiller data from the Sheety API
 export async function fetchChillerData() {
     try {
       const response = await fetch('https://api.sheety.co/313ba156926928db7871fc95577d36d9/projectChillerData/data');

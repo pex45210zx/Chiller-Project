@@ -1,4 +1,3 @@
-// Header.jsx
 import React from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { FaHome, FaPenSquare, FaTrashAlt, FaSignOutAlt, FaSlidersH } from 'react-icons/fa';
@@ -13,15 +12,8 @@ function Header({ click, handleClick, profilePicture, displayName, }) {
 
   const handleLogout = async () => {
     try {
-      // Clear session or authentication tokens
-      // You may need to adapt this to your specific authentication mechanism
-      // Example: Clearing local storage or session storage
-      localStorage.removeItem('profileData'); // Assuming you store profile data in localStorage
-
-      // Log out using Line API
+      localStorage.removeItem('profileData');
       await liff.logout();
-
-      // Redirect to the login page
       navigate('/liffLogout');
     } catch (error) {
       console.error('Error logging out:', error);
@@ -39,9 +31,6 @@ function Header({ click, handleClick, profilePicture, displayName, }) {
           <img src={profilePicture} alt="User Profile" />
           <span>{displayName}</span>
         </div>
-        {/* <div className="flex-container">
-          <img src={logo} alt="aquatic Logo" className="logo1" />
-        </div> */}
         <div className={`menu-container ${click ? 'active' : ''}`}>
           <ul className="menu">
             <div className="logo1-area">

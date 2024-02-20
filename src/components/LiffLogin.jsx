@@ -12,7 +12,7 @@ function LiffLogin() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const [loginAttempts, setLoginAttempts] = useState(0);
-    const maxLoginAttempts = 3; // Maximum number of login attempts
+    const maxLoginAttempts = 3;
 
     useEffect(() => {
         const loginWithLiff = async () => {
@@ -33,11 +33,8 @@ function LiffLogin() {
                 }
             } catch (error) {
                 console.log(error);
-                // Increase login attempts
                 setLoginAttempts(prevAttempts => prevAttempts + 1);
-                // Check if maximum login attempts reached
                 if (loginAttempts >= maxLoginAttempts) {
-                    // Reload the page
                     window.location.reload();
                 }
             } finally {
